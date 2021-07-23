@@ -1,0 +1,320 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+%\usepackage{sagetex}
+
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+
+\usepackage[makeroom]{cancel}
+\usepackage{ulem}
+
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\newcommand\Lin{\mathcal{L}}
+
+\usepackage[thinlines]{easytable}
+\begin{document}
+
+\begin{center}
+  146---1\\
+  RJ Acuña\\
+  (862079740)
+\end{center}
+\subsection*{1.1}
+\paragraph{2} Which of the following operators are linear?
+
+Let $u,v$ be real valued functions, $c\in\R.$
+
+(a) $\Lin u = u_x + xu_y$
+
+\begin{align*}
+  \Lin [c(u+v)] &= [c(u+v)]_x + x[c(u+v)]_y\\
+              &= c(u+v)_x + xc(u+v)_y\\
+              &= c(u_x+v_x) + xc(u_y+v_y)\\
+              &= c[(u_x+v_x) + x(u_y+v_y)]\\
+              &= c[u_x+v_x + xu_y+xv_y]\\
+              &= c[u_x + xu_y +v_x + xv_y]\\
+  &= c[\Lin u + \Lin v]
+\end{align*}
+
+(b) $\Lin u = u_x + uu_y$
+\begin{align*}
+  \Lin [cu] &= [cu]_x + [cu][cu]_y\\
+            &= cu_x + cucu_y\\
+            &= cu_x + c^2uu_y\\
+            &\neq cu_x + cuu_y\\
+            &= c(u_x + uu_y)\\
+            &= c\Lin u
+\end{align*}
+
+(c) $\Lin u = u_x + u_y^2$
+
+\begin{align*}
+  \Lin [cu] &= [cu]_x + [cu]_y^2\\
+            &= cu_x + (cu_y)^2\\
+            &= cu_x + c^2u_y^2\\
+            &\neq cu_x + cu_y^2\\
+            &= c(u_x + u_y^2)\\
+            &= c\Lin u
+\end{align*}
+
+(d) $\Lin u = u_x + u_y + 1$
+
+\begin{align*}
+  \Lin [cu] &= [cu]_x + [cu]_y + 1\\
+            &= cu_x + cu_y + 1\\
+            &= cu_x + cu_y + 1\\
+            &\neq cu_x + cu_y +c\\
+            &= c(u_x + u_y +1)\\
+            &= c\Lin u
+\end{align*}
+
+
+(e) $\Lin u =\sqrt{1+x^2}(cos(y))u_x + u_{yxy} -[\arctan(x/y)]u$
+\begin{align*}
+  \Lin [c(u+v)] &=\sqrt{1+x^2}(cos(y))[c(u+v)]_x + [c(u+v)]_{yxy}
+                  -[\arctan(x/y)][c(u+v)]\\
+  &=c[\sqrt{1+x^2}(cos(y))(u+v)_x + (u+v)_{yxy}
+    -[\arctan(x/y)](u+v)]\\
+  &=c[\sqrt{1+x^2}(cos(y))(u_x+v_x) + (u_{yxy}+v_{yxy})
+    -[\arctan(x/y)](u+v)]\\
+  &=c[\sqrt{1+x^2}(cos(y))u_x+ \sqrt{1+x^2}(cos(y))v_x +
+    u_{yxy}+v_{yxy} -[\arctan(x/y)]u -[\arctan(x/y)]v)]\\
+  &=c[\sqrt{1+x^2}(cos(y))u_x+
+    u_{yxy} -[\arctan(x/y)]u + \sqrt{1+x^2}(cos(y))v_x +v_{yxy}
+    -[\arctan(x/y)]v)]\\
+                &=c[\Lin u + \Lin v]
+\end{align*}
+\uwave{slu.}  by the previous observations just (a) and (e) are linear
+$\quad \lozenge$
+
+\paragraph{3}
+
+For each of the following equations, state the order and whether it
+is nonlinear, linear inhomogeneous, or linear homogeneous; provide
+reasons.
+
+(a) $u_t − u_{xx} + 1 = 0$
+\[u_t − u_{xx} + 1 = 0 \iff u_t − u_{xx}  = -1\]
+
+So, second order linear inhomogeneous.
+
+(b) $u_t − u_{ xx} + xu = 0$
+
+Second order linear homogeneous.
+
+
+(c) $u_t − u_{xxt} + uu_x = 0$
+
+Third order nonlinear.
+
+(d) $u_{tt} − u_{ x x} + x^2 = 0$
+\[u_{tt} − u_{ x x} + x^2 = 0 \iff u_{tt} − u_{ x x} = - x^2\]
+
+So, second order linear inhomogeneous.
+
+(e) $iu_t − u_{x x} + u/x = 0$
+
+Second order linear homogeneous.
+
+(f) $u_x(1 + u^2_x)^{-1/2}
++ u_y(1 + u^2_y )^{-1/2}
+= 0$
+
+First order nonlinear.
+
+(g)$ u_x + e^y u_y = 0$
+
+First order linear.
+
+(h) $u_t + u_{x x x x} +\sqrt{ 1 + u} = 0$
+
+Fourth order nonlinear.
+
+\paragraph{4} Show that the difference of two solutions of an inhomogeneous linear
+equation $\Lin u = g$ with the same $g$ is a solution of the homogeneous
+equation $\Lin u = 0$.
+
+\uwave{pf. }
+
+Let $u,$ and $v$ solve the equation $\Lin u  = g$.
+\[\Lin u = g\text{ and }\Lin v = g \implies \Lin(u-v) = \Lin u - \Lin
+  v  = g - g = 0\]
+So, $w = u-v$ is a solution to $\Lin w = 0\quad \square$
+\newpage
+\paragraph{9} Show that the functions $(c_1 + c_2 \sin^2 x + c_3 \cos^2 x)$ form a vector space.
+Find a basis of it. What is its dimension?
+
+\uwave{slu.}
+\[\sin^2 + \cos^2 = 1\]
+So, Span$\{1,\sin^2 x\}$  is the $2$-dimensional vector space with basis
+$\{1, \sin^2 x\}$ that
+contains all the functions of the form $(c_1 + c_2 \sin^2 x + c_3
+\cos^2 x)$, where $c_1,c_2,c_3 \in \R\quad \lozenge$
+
+\paragraph{11}  Verify that $u(x, y) = f(x)g(y)$ is a solution of the PDE $uu_{x y} = u_x u_y$ for
+all pairs of (differentiable) functions $f$ and $g$ of one variable.
+
+\uwave{slu. }
+\begin{align*}
+  u(x, y) = f(x)g(y) &\implies
+   u_{x} = f'(x)g(y)
+                     \text{ and } u_y = f(x)g'(y)
+                     \text{ and } u_{xy} = f'(x)g'(y)\\
+  \text{So, }uu_{xy} &=  f(x)g(y)f'(x)g'(y)
+                     = f'(x)g(y)f(x)g'(y)
+  = u_xu_y
+\end{align*}
+So, $uu_{xy} = u_xu_y$ if $u(x,y) = f(x)g(y)$, and $f$ and $g$ are
+differentiable functions of $x$, and $y$ respectively$\quad \lozenge$
+
+\subsubsection*{1.2}
+
+\paragraph{1} Solve the first-order equation $2u_t + 3u_x = 0$ with the auxiliary condition
+$u = \sin x$ when $t = 0$.
+
+\uwave{slu. }
+
+The solution is $u(x,t) = f(3x-2t).$
+
+We know that $u(x,0)=\sin x \implies u(x, 0)f(3x-2\cdot0) = f(3x) = \sin x$.
+
+Let $g(x) = \frac{x}{3}$. Thus,
+\[f(3x) = \sin(x)\implies f = \sin\circ g \text{ .}\]
+So,
+\[u(x,t) = \sin\left(\frac{3x-2t}{3}\right)\quad \lozenge\]
+
+\paragraph{2} Solve the equation $3u_y + u_{xy} = 0$. (Hint: Let $v = u_y$ .)
+
+\uwave{slu.}
+
+Let $v = u_y.$ Since, $u_{xy} = u_{yx} = (u_y)_x.$ It follows that,
+\[3v   +v_x = 0 \implies v_x = -3v \implies v = C(y)e^{-3x}
+  \implies u_y = C(y)e^{-3x} \implies u = \left(\int C(y) dy
+  \right)e^{-3x} + f(x)\]
+\[3u_y = 3C(y)e^{-3x} \text{ and }\left(u_x = -3\left(\int C(y) dy
+  \right)e^{-3x} + f'(x) \implies u_{xy} = -3C(y)e^{-3x}\right)
+\implies 3u_y +u_{xy} = 0\]
+So, $u(x,y) = \left(\int C(y) dy
+  \right)e^{-3x} + f(x)\quad \lozenge$
+
+\paragraph{3} Solve the equation $(1 + x^2)u_x + u_y = 0$. Sketch some
+of the characteristic curves.
+
+\begin{align*}
+  (1 + x^2)u_x + u_y &= \langle 1+x^2,1 \rangle\nabla u = 0\\
+  \text{So, }\frac{dy}{dx} = \frac{1}{1+x^2}&\implies y = \int
+                                              \frac{1}{1+x^2} dx =
+                                              \text{atan}(x) + C\\
+                     &\implies y-\text{atan}(x) = C\\
+  &\implies u(x,y) = f(y-\text{atan}(x))\quad \lozenge
+\end{align*}
+
+\paragraph{5} Solve the equation $xu_x + yu_y = 0$.
+
+\uwave{slu. }
+\begin{align*}
+  xu_x + yu_y &= \langle x,y \rangle\nabla u = 0\\
+  \text{So, } \frac{dy}{dx} = \frac{y}{x} &\implies \int \frac{1}{y} dy
+                                           = \int \frac{1}{x} dx\\
+              &\implies \ln y = \ln x + C\\
+              &\implies y = e^{\left(\ln x + C\right)} =
+                Cx\\
+              &\implies C = \frac{y}{x}\\
+              &\implies u(x,y) = f\left(\frac{y}{x}\right)\quad \lozenge
+\end{align*}
+
+\paragraph{6} Solve the equation $\sqrt{1 − x^2} u_x + u_y = 0$ with
+the condition $u(0, y) = y$.
+
+\uwave{slu. }
+\begin{align*}
+  \sqrt{1 − x^2} u_x + u_y &= \langle \sqrt{1 − x^2},1 \rangle\nabla u
+                             = 0\\
+  \text{So, } \frac{dy}{dx} = \frac{1}{\sqrt{1-x^2}} &\implies y = \int
+                                                \frac{1}{\sqrt{1-x^2}}
+                                                       dx =
+                                                       \text{asin}(x)+
+                                                       C\\
+                           &\implies C = y -\text{asin}(x)\\
+                           &\implies u(x,y) = f(y-\text{asin}(x))\\
+  u(0,y) = y &\implies u(0,y) = f(y-\text{asin}(0)) = f(y - 0) = f(y)
+               = y\\
+                           &\implies f\text{ is the identity map.}\\
+                           &\implies u(x,y) =  y -\text{asin}(x) \quad \lozenge
+\end{align*}
+\newpage
+\paragraph{10} Solve $u_x + u_y + u = e^{x+2y}$ with $u(x, 0) = 0$.
+
+\uwave{slu.}
+\[u_x + u_y = \langle 1,1 \rangle\nabla u\]
+Suggests the change of coordinates $x' = x+y$ and $y' = x-y$ will
+yield results.  Thus,
+\[x = \frac{x'+y'}{2}\text{ and } y = \frac{x'-y'}{2}\]
+So, $u(x,y) = u(x',y'):$
+\begin{align*}
+  u_x &= u_{x'}x'_x + u_{y'}y'_x\\
+      &= u_{x'} + u_{y'}\\
+  u_y &= u_{x'}x'_y + u_{y'}y'_y\\
+      &= u_{x'} - u_{y'}\\
+  \text{So, }u_x+u_y &= 2u_{x'}\\
+  \text{ and }x+2y  &= \frac{x'+y'}{2} +\frac{2(x'-y')}{2}\\
+      &=\frac{3x'-y'}{2}\\
+  \text{So, } e^{x+2y} &= e^{\frac{3x'-y'}{2}}\\
+  \text{So,} u_x+u_y +u = e^{x+2y} &\implies  2u_{x'} + u =
+                                     e^{\frac{3x'-y'}{2}}\\
+      &\iff  u_{x'} +\frac{1}{2}u =
+                                    \frac{1}{2}e^{\frac{3x'-y'}{2}}\\
+\end{align*}
+
+Is a first order ode in the variable $x'$, if we regard $y'$ as
+fixed. The method of integrating factors gives,
+
+\begin{align*}v(x') = \int \frac{1}{2} dx' = \frac{x'}{2}\text{ and } u(x',y') &=
+                                                                                 e^{-v(x')} \int e^{v(x')}\frac{1}{2}e^{\frac{3x'-y'}{2}} dx'\\
+  &=
+    \frac{1}{2}e^{-\frac{x'}{2}} \int
+    e^{\frac{x'}{2}}e^{\frac{3x'}{2}}e^{\frac{-y'}{2}} dx'\\
+  &= \frac{1}{2}e^{-\frac{x'}{2}}e^{\frac{-y'}{2}} \int
+    e^{\frac{x'+3x'}{2}} dx'\\
+                                                                               &= \frac{1}{2}e^{-\frac{x'}{2}}e^{\frac{-y'}{2}} \int e^{2x'} dx'\\
+  &= \frac{1}{2}e^{-\frac{x'}{2}}e^{\frac{-y'}{2}}
+    \frac{e^{2x'}+f(y')}{2}\\
+                                                                               &=  \frac{e^{2x'}+f(y')}{4e^{\frac{x'+y'}{2}}}\\
+  \implies u(x,y)  &=  \frac{e^{2(x+y)}+f(x-y)}{4e^{x}}\\
+                                                                               &=
+                                                                                 \frac{e^{x+2y}}{4}+
+                                                                                 \frac{f(x-y)}{4e^x}\\
+  u(x,0) = 0 &\implies u(x,0) = \frac{e^{x}}{4}+
+                                                                                 \frac{f(x)}{4e^x}
+               = 0\\
+                                                                               &\implies -\frac{e^{x}}{4} = \frac{f(x)}{4e^x}\\
+                                                                               &\implies
+                                                                                 f(z)=
+                                                                                 -e^{2z}
+\end{align*}
+
+Put $z = x-y$. Finally, $u(x,y) = \frac{e^{x+2y}}{4}-\frac{e^{2(x-y)}}{4e^x}
+=\frac{e^{x+2y}}{4}-\frac{e^{x-2y}}{4} =
+\frac{e^{x+2y}-e^{x-2y}}{4}\quad \blacklozenge$
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

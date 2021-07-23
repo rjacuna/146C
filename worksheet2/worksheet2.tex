@@ -1,0 +1,263 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{white}
+
+
+
+\begin{document}
+
+\begin{center}
+  146C --- 2
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+
+Let's solve the
+problem $a,b \in \R$,
+\[\begin{cases}u_{tt} +au_{tx}+bu_{xx} = 0\\ u(0,x)= \phi(x)\text{ and
+    }u_t(0,x) = \psi(x)\end{cases}\]
+
+$t^2+atx+bx^2 = 0 \implies t = \frac{-ax\pm\sqrt{(ax)^2 - 4bx^2}}{2} =
+\frac{-a \pm \sqrt{a^2-4b}}{2}x \implies t^2+atx+bx^2 = \left(t +
+  \frac{a + \sqrt{a^2-4b}}{2}x \right)\left(t + \frac{a -
+    \sqrt{a^2-4b}}{2}x  \right)$
+From the factorization we get two cases,
+
+In the case that
+$a^2-4b = 0$, we can factor the operator and see that the solution for
+$u$ in the following system, corresponds to the solution to the
+original equation,
+\[\begin{cases} \left(\pdv{t} +
+      \frac{a}{2}\pdv{x} \right)d = 0\\ \left(\pdv{t} +
+      \frac{a}{2}\pdv{x}  \right)u = d\end{cases}\]
+
+Then, $d(x,t) = f(x-\frac{a}{2}t)$, solves the first equation in the system.
+
+Let $y = x-\frac{a}{2}t$, then $u_t = \tau_tu_{\tau}-\frac{a}{2}u_y$, and
+$u_x = \tau_xu_{\tau} +u_y$.So,
+\[u_t+\frac{a}{2}u_x =(\tau_t+\frac{a}{2}\tau_x)u_{\tau} = f(y) \]
+
+Let $\tau = t$, so $\tau_t+\frac{a}{2}\tau_x = 1$,
+\[u_{\tau} = f(y) \implies u(\tau,y) = \tauf(y) +g(y) \]
+
+So,
+\[u(t,x) = tf(x-\frac{a}{2}t) +g(x-\frac{a}{2}t)\]
+\[u_(t,x) = f(x-\frac{a}{2}t) -t\frac{a}{2}f'(x-\frac{a}{2}t) -\frac{a}{2}g'(x-\frac{a}{2}t)\]
+Now,
+\[u(0,x) = g(x) = \phi(x)\text{ and } u_t(0,x) = f(x)
+  -\frac{a}{2}g'(x) = \psi(x)\]
+So,
+\[f(x) = \psi(x)+\frac{a}{2}\phi'(x)\text{ and }g(x) = \phi(x)\]
+Therefore,
+\[u(t,x) = t\left( \psi(x-\frac{a}{2}t)
+    +\frac{a}{2}\phi'(x-\frac{a}{2}t)\right)+\phi(x-\frac{a}{2}t).\]
+
+In that case you can check that if $a = 0 $, then $b = 0$. So,
+\[u(t,x) = t\left( \psi(x) \right)+\phi(x),\]
+which is the same result that we would've gotten by integrating
+$u_{tt} = 0.$
+
+In the case that $a^2-4b \neq 0$, we can factor the operator, and see
+that the solution for $u$ in the following system, correspond to
+the solution to the original equation.
+\[\begin{cases} \left(\pdv{t} +
+      \frac{a + \sqrt{a^2-4b}}{2}\pdv{x} \right)d = 0\\ \left(\pdv{t} + \frac{a -
+        \sqrt{a^2-4b}}{2}\pdv{x}  \right)u = d\end{cases}\]
+So, \[u(t,x) = f\left(x - \frac{a+\sqrt{a^2-4b}}{2}t \right) + g\left(x -\frac{a -
+      \sqrt{a^2-4b}}{2}t\right)\]
+\[u(0,x) = f(x)+g(x) = \phi(x)\implies \phi'(x) = f'(x)+g'(x)\]
+\[u_t(t,x) = - \frac{a+\sqrt{a^2-4b}}{2}f'\left(x - \frac{a+\sqrt{a^2-4b}}{2}t \right) - \frac{a-\sqrt{a^2-4b}}{2}g'\left(x -\frac{a -
+      \sqrt{a^2-4b}}{2}t\right)\]
+\[u_t(0,x) = - \frac{a+\sqrt{a^2-4b}}{2}f'\left(x\right) -
+  \frac{a-\sqrt{a^2-4b}}{2}g'\left(x\right) = \psi(x) \implies
+  \psi(x) = - \frac{a+\sqrt{a^2-4b}}{2}f'\left(x\right) -
+  \frac{a-\sqrt{a^2-4b}}{2}g'\left(x\right)\]
+
+We have the following linear system of equations
+\[\begin{cases}
+  \hspace{4.8em}f'(x)\,\,+&g'(x) = \phi'(x)\\
+  - \frac{a+\sqrt{a^2-4b}}{2}f'\left(x\right) -
+  \frac{a-\sqrt{a^2-4b}}{2}&g'\left(x\right) = \psi(x)\end{cases}
+\implies \begin{pmatrix}1&1 \\ - \frac{a+\sqrt{a^2-4b}}{2} & -
+  \frac{a-\sqrt{a^2-4b}}{2}\end{pmatrix}\begin{pmatrix}
+  f'(x)\\g'(x)\end{pmatrix}
+= \begin{pmatrix}\phi'(x)\\\psi(x)\end{pmatrix}\]
+\[\begin{vmatrix}1&1 \\ - \frac{a+\sqrt{a^2-4b}}{2} & -
+  \frac{a-\sqrt{a^2-4b}}{2}\end{vmatrix} =-
+  \frac{a-\sqrt{a^2-4b}}{2} +
+  \frac{a+\sqrt{a^2-4b}}{2} = \sqrt{a^2-4b} \]
+\[\begin{pmatrix}1&1 \\ - \frac{a+\sqrt{a^2-4b}}{2} & -
+  \frac{a-\sqrt{a^2-4b}}{2}\end{pmatrix}^{-1} = \frac{1}{\sqrt{a^2-4b}}\begin{pmatrix}-
+  \frac{a-\sqrt{a^2-4b}}{2}&-1 \\  \frac{a+\sqrt{a^2-4b}}{2} &
+  1\end{pmatrix} = \begin{pmatrix}-
+  \frac{a}{2\sqrt{a^2-4b}} + \frac{1}{2}&-\frac{1}{\sqrt{a^2-4b}} \\
+  \frac{a}{2\sqrt{a^2-4b}}+\frac{1}{2} &
+  \frac{1}{\sqrt{a^2-4b}}\end{pmatrix}\]
+\[\implies \begin{pmatrix}
+  f'(x)\\g'(x)\end{pmatrix}
+= \begin{pmatrix}-
+  \frac{a}{2\sqrt{a^2-4b}} + \frac{1}{2}&-\frac{1}{\sqrt{a^2-4b}} \\
+  \frac{a}{2\sqrt{a^2-4b}}+\frac{1}{2} &
+  \frac{1}{\sqrt{a^2-4b}}\end{pmatrix}\begin{pmatrix}\phi'(x)\\\psi(x)\end{pmatrix} \]
+So,
+\[f'(x) = -\left(
+  \frac{a}{2\sqrt{a^2-4b}} - \frac{1}{2}\right)\phi'(x)-\frac{1}{\sqrt{a^2-4b}}\psi(x)\]
+\[f(x) = -\left(
+  \frac{a}{2\sqrt{a^2-4b}} - \frac{1}{2}\right)\phi(x)-\frac{1}{\sqrt{a^2-4b}}\int_0^x\psi(s)\dd{s}\]
+\[g'(x) = \left(
+  \frac{a}{2\sqrt{a^2-4b}} + \frac{1}{2}\right)\phi'(x)+\frac{1}{\sqrt{a^2-4b}}\psi(x)\]
+\[g(x) = \left(
+  \frac{a}{2\sqrt{a^2-4b}} + \frac{1}{2}\right)\phi(x) +\frac{1}{\sqrt{a^2-4b}}\int_0^x\psi(s)\dd{s}\]
+
+Then,
+\begin{align*}
+  u(t,x)
+  &= -\left(\frac{a}{2\sqrt{a^2-4b}}
+    -\frac{1}{2}\right)\phi\left(x - \frac{a+\sqrt{a^2-4b}}{2}t \right)
+    -\frac{1}{\sqrt{a^2-4b}}\int_0^{x - \frac{a+\sqrt{a^2-4b}}{2}t }\psi(s)\dd{s}\\
+  &+\left(\frac{a}{2\sqrt{a^2-4b}}
+    + \frac{1}{2}\right)\phi\left(x -\frac{a-\sqrt{a^2-4b}}{2}t \right)
+    +\frac{1}{\sqrt{a^2-4b}}\int_0^{x - \frac{a-\sqrt{a^2-4b}}{2}t
+    }\psi(s)\dd{s}
+\end{align*}
+Therefore,
+\begin{align*}
+  u(t,x)
+  &= \frac{1}{2}\left( \phi\left(x - \frac{a+\sqrt{a^2-4b}}{2}t
+    \right) + \phi\left(x -\frac{a-\sqrt{a^2-4b}}{2}t \right)\right)\\
+  &+\frac{a}{2\sqrt{a^2-4b}}\left(\phi\left(x
+    -\frac{a-\sqrt{a^2-4b}}{2}t \right) - \phi\left(x
+    -\frac{a+\sqrt{a^2-4b}}{2}t \right)  \right)\\
+  &+\frac{1}{\sqrt{a^2-4b}}\int_{x - \frac{a+\sqrt{a^2-4b}}{2}t }^{x - \frac{a-\sqrt{a^2-4b}}{2}t }\psi(s)\dd{s}
+\end{align*}
+In the case $a= 0 \text{ and }b < 0$,  putting
+$b= c^2$, you can check it's exactly the same solution found in Strauss p.36 equation (8).
+\newpage
+If $a^2-4b < 0$ we don't get a real solution. However, any linear
+combination solves the problem. Since the operator is linear, it's
+real and imaginary parts must solve the problem and any combinations
+of them as well,
+\[\Re [u(t,x)] = \frac{u(t,x)+\overline{u(t,x)}}{2} \text{ and } \Im[
+  u(t,x)] =  \frac{u(t,x)-\overline{u(t,x)}}{2i}\]
+
+Let $u(t,x) = p(t,x) +iq(t,x)$, then $u_t(t,x) = p_t(t,x)+q_t(t,x)$
+
+If there exists a linear combination of the real
+and imaginary parts of $u$ that solves the IVP, that's our solution.
+
+let $\sqrt{a^2-4b} = di$,
+\begin{align*}
+    u(t,x)
+  &= \frac{1}{2}\left( \phi\left(x - \frac{a+di}{2}t
+    \right) + \phi\left(x -\frac{a-di}{2}t \right)\right)\\
+  &+\frac{a}{2di}\left(\phi\left(x
+    -\frac{a-di}{2}t \right) - \phi\left(x
+    -\frac{a+di}{2}t \right)  \right)\\
+  &+\frac{1}{di}\int_{x - \frac{a+di}{2}t }^{x - \frac{a-di}{2}t }\psi(s)\dd{s}
+\end{align*}
+Verify $u(0,x) = \phi(x)$,
+\begin{align*}
+    u(0,x)
+  &= \frac{1}{2}\left( \phi\left(x
+    \right) + \phi\left(x \right)\right)
+  +\frac{a}{2di}\left(\phi\left(x
+    \right) - \phi\left(x
+    \right)  \right)
+  +\frac{1}{di}\int_{x }^{x }\psi(s)\dd{s} = \phi(x)
+\end{align*}
+
+Compute $u_t$,
+\begin{align*}
+  u_t(t,x)
+  &= -\left(\frac{a+di}{4}\right) \phi'\left(x - \frac{a+di}{2}t
+    \right)- \left(\frac{a-di}{4}\right)  \phi'\left(x -\frac{a-di}{2}t \right)\\
+  &\color{green}+\left(  \frac{a}{2di}\frac{a+di}{2}\right)\color{white} \phi'\left(x
+    -\frac{a+di}{2}t \right)
+    \color{green}-\left(\frac{a}{2di}\frac{a-di}{2}\right)\color{white}\phi'\left(x
+    -\frac{a-di}{2}t \right)
+    \\
+  &\color{cyan}-\left(  \frac{1}{di}\frac{a-di}{2}\right)\color{white}\psi\left(x -
+    \frac{a-di}{2}t \right)\color{cyan}
+  +\left(  \frac{1}{di}\frac{a+di}{2}\right)\color{white}\psi\left(x -
+    \frac{a+di}{2}t \right)\\
+  &= -\left(\frac{a}{4}+\frac{d}{4}i\right) \phi'\left(x - \frac{a+di}{2}t
+    \right)- \left(\frac{a}{4}-\frac{d}{4}i\right)  \phi'\left(x -\frac{a-di}{2}t \right)\\
+  &\color{green}+\left(\frac{a}{4}-\frac{a^2}{4d}i\right) \color{white}\phi'\left(x
+    -\frac{a+di}{2}t \right)  \color{green}
+    +\left(\frac{a}{4} +\frac{a^2}{4d}i\right)\color{white}\phi'\left(x
+    -\frac{a-di}{2}t \right)
+    \\
+  &\color{cyan}+\left(  \frac{1}{2}+\frac{a}{2d}i\right)\color{white}\psi\left(x -
+    \frac{a-di}{2}t \right) \color{cyan}
+  +\left(  \frac{1}{2}-\frac{a}{2d}i\right)\color{white}\psi\left(x -
+    \frac{a+di}{2}t \right)
+\end{align*}
+
+Verify $u_t(0,x) = \psi(x)$
+\begin{align*}
+  u_t(0,x)&= -\left(\frac{a}{4}+\frac{d}{4}i\right) \phi'\left(x
+            \right)- \left(\frac{a}{4}-\frac{d}{4}i\right)  \phi'\left(x  \right)\\
+  &\color{green}+\left(\frac{a}{4}-\frac{a^2}{4d}i\right) \color{white}\phi'\left(x
+     \right)  \color{green}
+    +\left(\frac{a}{4} +\frac{a^2}{4d}i\right)\color{white}\phi'\left(x
+     \right)
+    \\
+  &\color{cyan}+\left(  \frac{1}{2}+\frac{a}{2d}i\right)\color{white}\psi\left(x  \right) \color{cyan}
+  +\left(  \frac{1}{2}-\frac{a}{2d}i\right)\color{white}\psi\left(x
+    \right) = \psi(x)
+\end{align*}
+
+Verify $w(t,x) = \Re[u(t,x)] + \Im[u(t,x)]$ solves the IVP,
+
+\[w(0,x) = p(0,x)+q(0,x) = \phi(x) \text{ and } w_t(t,x) = p_t(x,t) + q_t(x,t)\]
+
+We've shown,
+\[u_t(0,x) = \psi(x) \in \R \implies q_t(0,x) = 0 \text{ and } w_t(0,x) = p_t(0,x) = \psi(x)\]
+
+So, for $a^2-4b<0$ the solution is, \[w(t,x) = \Re[u(t,x)] +
+  \Im[u(t,x)]\]
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

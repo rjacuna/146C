@@ -1,0 +1,324 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{white}
+
+
+\begin{document}
+
+\begin{center}
+  146C --- 5
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+
+Diffusion Equation (DE),
+\[u_t = ku_{xx}\, .\]
+
+Wave Equation (WE),
+\[u_{tt} = k u_{xx}\, .\]
+
+\paragraph{1} Suppose that $u$ is the solution to (DE) on the closed interval $[0, l]$. Suppose that
+$\phi$ is a continuous function on $[0, l]$ and that
+\[u(0,x) = \phi(x)\text{ and } u(t,0)= 0 = u(t,l)\]
+Use the weak maximal property to argue that if $u$ and $v$ are two solutions to the above equation
+with these initial conditions and boundary conditions, then for all
+$(t, x)$ in $[0, T] × [0, l]$,
+\[u(t,x) = v(t,x).\]
+
+\uwave{pf.}
+
+$u, $ and $v$ solve (DE). Then,
+\[u_t = ku_{xx}\text{ and }v_t = kv_{xx} \implies (u-v)_t =
+  k(u-v)_{xx}.\]
+\[u(0,x) = \phi(x) = v(0,x) \implies (u-v)(0,x) = 0.\]
+\[u(t,0) = v(t,0) = 0 = v(t,l) = u(t,l) \implies (u-v)(t,0) = 0 = (u-v)(t,l).\]
+
+Therefore, $(u-v)(t,x) \equiv 0$, for $(t,x)$ on the boundary of the
+semi-infinite strip $[0,\infty)\times[0,l]$. By the weak maximum
+principle,the function $u-v$ has
+it's maximum on the boundary. Since, solutions of (DE) are
+concentrations, or temperatures, there are no negative solutions if
+one uses an absolute scale, i.e. Kelvin. Therefore, everywhere on that
+domain $(u-v)(t,x) \equiv 0$, so
+
+\[u(t,x) = v(t,x)\quad \blacksquare\]
+
+\paragraph{2} Suppose that $u$ is the solution to (DE) on $\R^2$. Suppose that $\phi$ is a positive
+continuous function on $\R$ that is integrable on all of $\R$ (meaning the integral over $(−∞,∞)$ is
+finite) and that
+\[u(0, x) = \phi(x)\text{ and } \lim_{x\rightarrow -\infty} u(t, x) =
+  0 = \lim_{x\rightarrow \infty} u(t, x)\]
+Using the previous problem, argue that if $u$ and $v$ are two solutions to the above equation with
+this initial condition, then for all $(t, x)$ in $[0, ∞) × (−∞,∞)$,
+\[u(t, x) = v(t, x).\]
+
+\uwave{pf.}
+
+The boundary of the region $[0, ∞) × (−∞,∞)$, is $\{0\}× (−∞,∞)$, there
+\[u(0,x) = \phi(x) = v(0, x)\implies (u-v)(0,x) = 0.\]
+By the weak maximum property $(u-v)(t,x)\equiv 0$ as $u-v$ is
+non-negative, for the same reasons as above. So,\[ u(t, x) = v(t,x)\quad \blacksquare\]
+
+\paragraph{3} Solve Strauss 2.2 \# 1. Use this exercise to prove the following. Suppose that
+$u$ is the solution to (WE) on $\R^2$. Suppose that $\phi$ is continuously differentiable and that $\psi$ is
+continuous on $\R$ and that
+\[u(0, x) = \phi(x), (2) u_t(0, x) = \psi(x).\]
+Prove that if $u$ and $v$ are two solutions to the above equation with this initial condition, then
+for all $(t, x)$ in $(−∞, ∞) × (−∞,∞)$,
+$u(t, x) = v(t, x).$
+
+\uwave{slu of Strauss 2.2 \# 1} See the first problem in my HW \#
+3$\quad\blacksquare$
+
+\uwave{pf. }
+\[u_{tt} = k u_{xx}\text{ and }v_{tt} = kv_{xx} \implies (u-v)_{tt} = k(u-v)_{xx}\]
+\[u(0, x) = \phi(x), u_t(0, x) = \psi(x), v(0, x) = \phi(x), \text{ and } v_t(0, x) = \psi(x)\]
+\[\implies (u-v)(0,x)\equiv 0\text{ and } (u-v)_t(0,x) \equiv 0\]
+By Strauss 2.2 \# 1, \[(u-v)(t,x) \equiv 0\implies u(x,t) =
+  v(x,t)\quad\blacksquare\]
+
+\paragraph{4} Suppose that $u$ is the solution to (DE) on the closed interval $[0, l]$ and suppose
+that $v$ is the solution to (WE) on the closed interval $[0, l]$. Suppose further that
+$v(t, 0) = v(t, l) = 0$ and $u(t, 0) = u(t, l) = 0$.
+Given functions $T$ and $X$, find all solutions to these boundary value problems, where
+\[u(t, x) = T(t)X(x)\text{ and }v(t, x) = T(t)X(x).\]
+Note that you are only being asked to find a single solution for each
+problem.
+
+\uwave{slu.}
+
+\[u_t = T'X = kTX'' = ku_{xx}\text{ and }v_{tt} = T''X = kTX''=v_{xx}\]
+\[\implies \frac{T'}{T} = k\frac{X''}{X} = -\lambda \text{ and } \frac{T''}{T} =
+  k\frac{X''}{X} = -\lambda\text{ both are constant}\]
+\[\implies X''+ \frac{\lambda}{k} X = 0 \text{ and } \left(T'
+  +\lambda T = 0\text{ or }  T''+ \lambda T = 0 \text{ respectively.}
+\right)\]
+
+The first ODE in $X$ is common to both equations, we know from a
+previous course that with the boundary conditions as stated, the only
+possible eigenvalues that yield non-trivial solutions are positive,
+since $\lambda/k >0$, we have
+\[X(x) = A\cos\left(\sqrt{\frac{\lambda}{k}} x\right) +
+  B\sin\left(\sqrt{\frac{\lambda}{k}} x\right)\]
+\[X(0) = 0 = A\cos(0) + B\sin(0) = A\]
+\[X(l) = 0 = B\sin\left(\sqrt{\frac{\lambda}{k}}l\right) \]
+If $B= 0$, we have the trivial solution, but we don't want trivial
+solutions so,
+\[\sin\left(\frac{\sqrt{\lambda} l}{\sqrt{k}}\right) = 0 \implies
+  \frac{\sqrt{\lambda} l}{\sqrt{k}} = n\pi \implies
+  \lambda =k \left(\frac{n\pi}{l}\right)^2\]
+\[\implies X_n(x) = \sin\left( \frac{n\pi x}{l} \right)\text{ as the
+  }\sqrt{k} \text{ cancels.}\]
+\[\implies T'+k \left(\frac{n\pi}{l}\right)^2 T = 0 \implies T_n(t) = C_n\exp\left(-k\left(\frac{n\pi}{l}\right)^2 t\right)\]\[\implies T''+k
+  \left(\frac{n\pi}{l}\right)^2 T = 0\implies T_n(t) =
+  A_n\cos\left(\frac{\sqrt{k} n \pi
+      t}{l}\right) + B_n\sin\left(\frac{\sqrt{k} n\pi t}{l}\right).\]
+\[\implies u(t,x) = \sum_{n=1}^{\infty}C_n\exp\left(-k\left(
+      \frac{n\pi}{l}\right)^2t \right)\sin\left( \frac{n\pi x}{l}
+  \right),\]\[\text{ and }v(t,x) =  \sum_{n=1}^\infty\left(
+    A_n\cos\left(\sqrt{k}\left(  \frac{ n\pi
+        }{l}\right)t\right) + B_n\sin\left(\sqrt{k}\left(  \frac{n\pi}{l}\right) t\right) \right)\sin\left( \frac{n\pi x}{l}
+  \right)\quad \blacklozenge\]
+
+\paragraph{5} Suppose that $u$ is the solution to (DE) on the closed interval $[0, l]$ and
+\[u(t, 0) = u(t, l) = 0.\]
+Find all solutions to this boundary value problem, where
+
+(1) $u(0, x) = 2 \sin\left( \frac{\pi x}{l} \right),$
+
+(2) $u(0, x) = 5 \sin\left( \frac{3\pi x}{l} \right) +7 \sin\left( \frac{4\pi x}{l} \right).$
+
+\uwave{slu. }
+
+By 4,
+\[u(0,x) = \sum_{n=1}^{\infty}C_n\exp\left(0\right)\sin\left( \frac{n\pi x}{l}
+  \right) = \sum_{n=1}^{\infty}C_n\sin\left( \frac{n\pi x}{l}
+  \right) \]
+
+for (1) $C_1 = 2 $ and $ C_n = 0\quad  \forall n: n\neq 2$, then
+\[\implies u(t,x) = 2\exp\left(-k\left(
+      \frac{\pi}{l}\right)^2t \right)\sin\left( \frac{\pi x}{l}
+  \right)\]
+for (2) $C_3 = 5,C_4 = 7 $ and $ C_n = 0\quad  \forall n: n\neq 2$ and
+$n \neq 7$, then
+\[\implies u(t,x) = 5\exp\left(-k\left(
+      \frac{3\pi}{l}\right)^2t \right)\sin\left( \frac{3\pi x}{l}
+  \right)+7\exp\left(-k\left(
+      \frac{4\pi}{l}\right)^2t \right)\sin\left( \frac{4\pi x}{l}
+  \right)\quad \lozenge\]
+
+
+\paragraph{6} Suppose that $v$ is the solution to (WE) on the closed
+interval $[0, l]$, with $l$ positive
+and
+\[v(t, 0) = u(t, l) = 0.\]
+Find all solutions to this boundary value problem, where
+
+(1) $v(0, x) = 2 \sin\left( \frac{\pi x}{l} \right),$
+
+(2) $v(0, x) = 5 \sin\left( \frac{3\pi x}{l} \right) +7 \sin\left( \frac{4\pi x}{l} \right).$
+
+
+(3) Do you get unique solutions to the above problems? If not, what additional information
+will give you unique solutions? Supply such information and find the solutions to these
+problems with the additional information.
+
+\uwave{slu. }
+
+To simplify the form we let $\sqrt{k} = c$, the wave speed,
+\[v(t,x) = \sum_{n=1}^\infty\left(
+    A_n\cos\left(c\left(  \frac{ n\pi
+        }{l}\right)t\right) + B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right) \right)\sin\left( \frac{n\pi x}{l}
+  \right).\]
+Then, \[\text{ and }v(0,x) = \sum_{n=1}^\infty A_n\sin\left( \frac{n\pi x}{l}
+  \right).\]
+
+for (1) $A_1 = 2 $ and $ A_n = 0\quad  \forall n: n\neq 2$, then
+\[\implies u(t,x) = 2\cos\left(c\left(
+      \frac{\pi}{l}\right)t \right)\sin\left( \frac{\pi x}{l}
+  \right) + \sum_{n=1}^\infty B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right)\sin\left( \frac{n\pi x}{l}
+  \right).\]
+for (2) $C_3 = 5,C_4 = 7 $ and $ C_n = 0\quad  \forall n: n\neq 2$ and
+$n \neq 7$, then
+\[\implies u(t,x) = 5\cos\left(c\left(
+      \frac{3\pi}{l}\right)t \right)\sin\left( \frac{3\pi x}{l}
+  \right)+7\cos\left(c\left(
+      \frac{4\pi}{l}\right)t \right)\sin\left( \frac{4\pi x}{l}
+  \right)+ \sum_{n=1}^\infty B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right)\sin\left( \frac{n\pi x}{l}\right)\]
+for (3), no it's not enough information, we need to characterize the
+$B_n$s by specifying $v_t(0,x) = \psi(x)$. If we let $v_t(0,x) = 0$,
+then all of the $B_n$s above are $0$, and we get unique
+solutions$\quad \lozenge$
+
+\paragraph{7} Suppose that $u$ is the solution to (DE) on the closed interval $[0, l]$ and
+\[u_x(t, 0) = u_x(t, l) = 0.\]
+Find all solutions to this boundary value problem, where
+
+(1) $u(0, x) = 5 \cos\left( \frac{\pi x}{l} \right),$
+
+(2) $u(0, x) = 4 + 2\cos\left( \frac{3\pi x}{l} \right) +7 \sin\left( \frac{4\pi x}{l} \right).$
+
+\uwave{slu.}
+
+Since we have the condition,
+\[u_x(t,0) = u_x(t,l) = 0.\]
+It follows that,
+\[X'(0)T(t) = X'(L)T(t) = 0 \implies X'(0) = X'(l) =0.\]
+
+Consider the case $\lambda = 0$, then
+\[X'' = 0 \implies X(x) = d_1x +d_2.\]
+\[X''(x) = d_1 \text{ and }X''(0) = 0 \implies d_1 = 0.\]
+
+However, $d_2$ is not determined by the boundary conditions, so
+$\lambda = 0$ is an eigenvalue, with eigenfunction $X_0(x) = C_0.$
+
+We know that there are no negative eigenvalues from a previous class.
+
+Furthermore, the solution for the positive eigenvalues is the same,
+with the difference that the eigenfunctions are $\cos(\frac{n\pi x}{l})$.Therefore,
+\[u(t,x) = C_0 + \sum_{n=1}^{\infty} C_n\exp\left(-k\left(
+      \frac{n\pi}{l}\right)^2t \right)\cos\left( \frac{n\pi x}{l}
+  \right)\]
+
+for (1) $C_1 = 5$, and $\forall n: n\neq 1 C_n = 0 \implies$
+$C_1 = \frac{5l}{\pi}$. So,
+\[u(t,x) = 5\exp\left(-k\left(
+      \frac{\pi}{l}\right)^2t \right)\cos\left(\frac{n\pi x}{l}
+  \right).\]
+
+for (2) $C_0 = 4$, $C_3 = 2,$ and $C_4 = 7$, $\forall n: n\neq 3$ and
+$n\neq 4, C_n = 0$. So,
+\[ u(t,x) = 4 + 2\exp\left(-k\left(
+      \frac{3\pi}{l}\right)^2t \right)\cos\left( \frac{3\pi x}{l}
+  \right) + 7\exp\left(-k\left(
+      \frac{4\pi}{l}\right)^2t \right)\cos\left( \frac{3\pi x}{l}
+  \right)\quad \lozenge\]
+
+\newpage
+\paragraph{8} Suppose that $u$ is the solution to (WE) on the closed interval $[0, l]$ and
+\[v_x(t, 0) = v_x(t, l) = 0.\]
+Find all solutions to this boundary value problem, where
+
+(1) $v(0, x) = 5 \cos\left( \frac{\pi x}{l} \right),$
+
+(2) $v(0, x) = 4 + 2\cos\left( \frac{3\pi x}{l} \right) +7 \sin\left( \frac{4\pi x}{l} \right).$
+
+(3) Do you get unique solutions to the above problems? If not, what additional information
+will give you unique solutions? Supply such information and find the solutions to these
+problems with the additional information.
+
+\uwave{slu. }
+The same way as number 7,
+
+\[v(t,x) = A_0 +\sum_{n=0}^\infty \left(
+    A_n\cos\left(c\left(  \frac{ n\pi
+        }{l}\right)t\right) + B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right) \right)\cos\left( \frac{n\pi x}{l}
+  \right)\]
+
+for (1) $C_1 = 5$, and $\forall n: n\neq 1 C_n = 0 \implies$
+$C_1 = \frac{5l}{\pi}$. So,
+\[v(t,x) = 5\cos\left(c\left(
+      \frac{\pi}{l}\right)t \right)\cos\left(\frac{n\pi x}{l}
+  \right) + \sum_{n=0}^\infty  B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right) \cos\left( \frac{n\pi x}{l}
+  \right) .\]
+
+for (2) $C_0 = 4$, $C_3 = 2,$ and $C_4 = 7$, $\forall n: n\neq 3$ and
+$n\neq 4, C_n = 0$. So,
+\[v(t,x) = 4 + 2\cos\left(c\left(
+      \frac{3\pi}{l}\right)t \right)\cos\left( \frac{3\pi x}{l}
+  \right) + 7\cos\left(c\left(
+      \frac{4\pi}{l}\right)t \right)\cos\left( \frac{4 \pi x}{l}
+  \right) + \sum_{n=0}^\infty  B_n\sin\left(c\left(  \frac{n\pi}{l}\right) t\right) \cos\left( \frac{n\pi x}{l}
+  \right).\]
+
+for (3), no it's not enough information, we need to characterize the
+$B_n$s by specifying $v_t(0,x) = \psi(x)$. If we let $v_t(0,x) = 0$,
+then all of the $B_n$s above are $0$, and we get unique
+solutions$\quad \lozenge$
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

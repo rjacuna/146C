@@ -1,0 +1,666 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{Goldenrod}
+
+
+
+\begin{document}
+
+\begin{center}
+  146C --- 2
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+\subsection*{I.3}
+\paragraph{5} Derive the equation of one-dimensional diffusion in a medium that is
+moving along the $x$ axis to the right at constant speed $V$.
+
+\uwave{slu.}
+
+The mass function of the dye is given by the integral of the concentration
+between the start $a$ up to some $x > a$,
+
+\[M(x,t) = \int_a^x u(y,t) \dd{y} \implies \pdv{M}{t}(x,t) = \int_a^x u_t(y,t) \dd{y}\]
+
+Fick's law says that the mass in this section of pipe cannot change except by flowing in or
+out of its ends. So,
+
+\begin{align*}
+  &\dv{M}{t} = \text{flow in} -\text{flow out}\\
+  &\text{ Since the rod is moving with constant speed } V \text{ to
+    the right, we have,}\\
+  &\text{flow in} = ku_x(x,t) -Vu(x,t)\text{ and }\text{ flow out }=
+    ku_x(a,t) -Vu(a,t)\\
+  \implies & \int_a^x u_t(y,t) dy =  ku_x(x,t) -Vu(x,t) -(ku_x(a,t)
+             -Vu(a,t))\\
+  \implies & \dv{x}\int_a^x u_t(y,t) dy = \dv{x}\left(   ku_x(x,t) -Vu(x,t) -(ku_x(a,t)
+             -Vu(a,t))\right)\\
+  \overset{\text{FTC 1}}{\implies}
+  & u_t(x,t)  = ku_{xx}(x,t) -Vu_{x}(x,t) -(k\cdot0         -V\cdot0)\\
+  \implies & u_t = ku_x -Vu_{xx} \quad \blacksquare
+\end{align*}
+\paragraph{6} Consider heat flow in a long circular cylinder where the temperature
+depends
+ only on t and on the distance r to the axis of the cylinder. Here
+$r =\sqrt{x^2 + y^2}$ is the cylindrical coordinate. From the three-dimensional
+heat equation derive the equation $u_t = k(u_{rr} + u_r/r)$.
+
+\uwave{slu. }
+
+The heat equation is 1.3 equation (10)
+\[c\rho \pdv{u}{t} = \nabla\cdot \left( \kappa \grad{u} \right)\iff u_t =\frac{\kappa}{c\rho} \laplacian{u} \]
+
+We have a cylindrical coordinate system,
+\[\begin{cases}x = \r \cos \theta\\ y = r\sin \theta\\ z =
+    z\end{cases} \iff \begin{cases} r = \sqrt{x^2 + y^2}\\ \theta =
+    \atan(\frac{y}{x})\\ z = z\end{cases}\]
+
+\[\mathcal{J} =
+  \begin{pmatrix} \pdv{x}{r}&\pdv{y}{r}&\pdv{z}{r} \\
+    \pdv{x}{\theta}&\pdv{y}{\theta}&\pdv{z}{\theta} \\
+  \pdv{x}{z}&\pdv{y}{z}&\pdv{z}{z} \end{pmatrix} =   \begin{pmatrix}
+  \cos \theta&\sin \theta & 0 \\
+    -r\sin \theta & r\cos \theta & 0 \\
+    0&0&1 \end{pmatrix}\]
+
+Note, $|\mathcal{J}| = \begin{vmatrix}
+  \cos \theta&\sin \theta \\
+    -r\sin \theta & r\cos \theta  \end{vmatrix} = r$, then
+  \begin{align*}
+    \mathcal{J}^{-1} &= \frac{1}{r} \begin{pmatrix}
+      \begin{vmatrix}r\cos \theta
+        &0\\0&1\end{vmatrix}&\begin{vmatrix}0 &\sin
+        \theta\\1&0\end{vmatrix} & \begin{vmatrix}\sin \theta  &
+        0\\r\cos \theta & 0\end{vmatrix}\\
+      \begin{vmatrix}0
+        &-r\sin\theta\\1&0\end{vmatrix}& \begin{vmatrix} \cos \theta &
+        0 \\0 & 1\end{vmatrix}&\begin{vmatrix}0 &\cos\theta\\0&-r\sin \theta\end{vmatrix} \\
+      \begin{vmatrix}-r\sin \theta &r\cos
+        \theta\\0&0\end{vmatrix}&\begin{vmatrix}\sin \theta &\cos
+        \theta \\0&0\end{vmatrix}&\begin{vmatrix}\cos \theta
+        &\sin\theta\\-r\sin \theta &r\cos
+        \theta\end{vmatrix}\end{pmatrix}\\
+ &=\frac{1}{r}\begin{pmatrix}
+      r\cos \theta
+      & -\sin
+      \theta & 0\\
+      r\sin \theta &\cos \theta & 0\\
+      0&0&r\end{pmatrix} = \begin{pmatrix}
+      \cos \theta
+      & -\frac{1}{r}\sin
+      \theta & 0\\
+      \sin \theta & \frac{1}{r}\cos \theta & 0\\
+      0&0&1\end{pmatrix}
+\end{align*}
+
+Then we can see that, \[\mathcal{J}^{-1} = \begin{pmatrix} \pdv{r}{x}&\pdv{\theta}{x}&\pdv{z}{x} \\
+    \pdv{r}{y}&\pdv{\theta}{y}&\pdv{z}{y} \\
+  \pdv{r}{z}&\pdv{\theta}{z}&\pdv{z}{z} \end{pmatrix}\]
+
+And from the chain rule we can conclude,
+\[\pdv{}{z} = 0\pdv{}{r}+0\pdv{}{\theta}+1\pdv{}{z} = \pdv{}{z} \text{
+    lol! }\]
+
+Now from the calculations in page 157, we can conclude after squaring
+the preceding operator that,
+\[\laplacian = \pdv[2]{}{r} +\frac{1}{r}\pdv{}{r}
+  +\frac{1}{r^2}\pdv[2]{}{\theta} +\pdv[2]{}{z}\]
+
+Since $u$ depends only on $t$ we have,
+
+\[\pdv[2]{u}{\theta} = 0 \text{ and } \pdv[2]{u}[z]= 0\implies
+  \laplacian{u} = \pdv[2]{u}{r} +\frac{1}{r}\pdv{u}{r}\]
+
+Let $k= \frac{\kappa}{c\rho}$ and the result follows,
+\[u_t = k(u_{rr} + u_r/r)\quad \blacksquare\]
+\paragraph{7} Solve Exercise 6 in a ball except
+ that the temperature depends
+ only on the spherical coordinate $\sqrt{x^2 + y^2 + z^2}$ . Derive the equation
+ $u t = k(u_{rr} + 2u_r /r )$.
+
+ \uwave{slu.}
+
+ Chapter 6.1 formula (6) gives us $\laplacian$ in spherical
+ coordinates,
+ \[\laplacian u = u_{rr} +\frac{2}{r}u_r +\frac{1}{r^2}[u_{\theta\theta}
+   +(\cot{\theta}) u_\theta +\frac{1}{\sin^2{\theta}} u_{\phi\phi}]\]
+
+ Since $u$ only depends on $t$ and $r$ we have,
+ \[u_\theta = 0 \text{ and }u_\phi = 0 \implies \laplacian u = u_{rr}
+   +\frac{2}{r}u_r\]
+
+ Let $k= \frac{\kappa}{c\rho}$ and the result follows,
+\[u_t = k(u_{rr} + 2u_r/r)\quad \blacksquare\]
+\paragraph{10} If $\bold{f(x)}$ is continuous and $|\vb{f(x)}|\leq
+\frac{1}{|\bold{x}|^3+1}$ for all $\bold{x}$ show that
+\[\iiint_{\text{all space}} \nabla\cdot \bold{f} \dd{s} = 0\]
+
+(\textit{Hint:} Take $D$ to be a large ball, apply the divergence
+theorem, and let its radius tend to infinity)
+
+\uwave{slu.}
+Let $B_R = \{\vb{x}| |x| < R\}$ and bdy $B_R = S_R =\{\vb{x}\in \R^3
+|\quad |x|=R\} $
+\begin{align*}
+  \bigg|\iiint_{B_R} \nabla\cdot \bold{f} \dd{s}\bigg|
+  &\overset{\text{div. thm.}}{=}
+    \bigg|\iint_{S_R} \bold{f}
+    \cdot \vb{n} \dd{s}
+    \bigg| \\
+  &\leq \iint_{S_R} |\bold{f}
+    \cdot \vb{n}|
+  ds \leq \iint_{S_R} |\bold{f}|
+    |\vb{n}| \dd{s} \leq \iint_{S_R} |\bold{f}|
+    1 \dd{s}\\
+  &\leq \iint_{S_R} |\bold{f}| \dd{s} \leq \iint_{S_R} \bigg|\frac{1}{|\bold{x}|^3+1}\bigg| \dd{s}
+    = \iint_{S_R} \frac{1}{R^3+1} \dd{s}\\
+  &= \frac{1}{R^3+1}\iint_{S_R} \dd{s} =\frac{4\pi R^2}{ R^3 +1 }\\
+\end{align*}
+\[\iiint_{\text{all space}} \nabla\cdot \bold{f} \dd{s} =
+  \lim_{R\rightarrow \infty} \frac{4\pi R^2}{ R^3 +1 } =
+  \lim_{R\rightarrow \infty} \frac{4\pi}{ R +\frac{1}{R^2}} = 0\quad \blacksquare\]
+\paragraph{11} If curl $\bold{v} = 0$ in all of three-dimensional space, show that there exists a
+scalar function$ \phi(x, y, z)$ such that $v =$ grad $\phi$.
+
+\uwave{slu. }
+Suppose curl $\vb{v} = \vb{0}$,
+
+\begin{align*}
+  \curl{\vb{v}}
+  &= \begin{vmatrix} \vb{i} &\vb{j} &\vb{k}\\
+    \pdv{}{x} &\pdv{}{y} &\pdv{}{z}\\
+    v_1 &v_2 &v_3\end{vmatrix}\\
+  &= \left(\pdv{v_3}{y} -\pdv{v_2}{z}, -\left( \pdv{v_3}{x}-
+    \pdv{v_1}{z} \right), \pdv{v_2}{x} -\pdv{v_1}{y} \right)\\
+  &= \left(\pdv{v_3}{y} -\pdv{v_2}{z},
+    \pdv{v_1}{z} -\pdv{v_3}{x}, \pdv{v_2}{x} -\pdv{v_1}{y} \right)=
+    \vb{0}\\
+ \implies& \begin{cases} \pdv{v_3}{y} -\pdv{v_2}{z} = 0\\ \pdv{v_1}{z}
+   -\pdv{v_3}{x} = 0 \\ \pdv{v_2}{x} -\pdv{v_1}{y} = 0\end{cases}
+  \implies \begin{cases}\color{green} \pdv{v_3}{y} = \pdv{v_2}{z} \\ \color{White}\pdv{v_1}{z}
+   = \pdv{v_3}{x} \\\color{Orange} \pdv{v_2}{x} = \pdv{v_1}{y} \end{cases}
+\end{align*}
+
+Let $\phi(x,y,z) =\int_0^z v_3(x,y,z) \dd{z}$
+\begin{align*}
+  \pdv{\phi}{x}  &= \int_0^z \color{White}
+                   \pdv{v_3}{x}\color{Goldenrod}\dd{z}
+                   = \int_0^z \color{White}
+                   \pdv{v_1}{z}\color{Goldenrod}\dd{z} = v_1\\
+  \pdv{\phi}{y}  &= \int_0^z \color{green}
+                   \pdv{v_3}{y}\color{Goldenrod}\dd{z}
+                   = \int_0^z \color{green}
+                   \pdv{v_2}{z}\color{Goldenrod}\dd{z} = v_2\\
+  \pdv{\phi}{z}  &= \int_0^z \color{cyan}
+                   \pdv{v_3}{z}\color{Goldenrod}\dd{z}
+                   = v_3\\
+  \implies& \vb{v} = \grad{\phi} \quad \blacksquare
+\end{align*}
+\subsection*{I.4} (Hint: Use equations (4) and (5) on Page 23. For (a), note that the curl of a gradient is
+zero.)
+\paragraph{1}By trial and error, find a solution of the diffusion equation $u_t = u_{x x}$ with
+the initial condition $u(x, 0) = x^2$.
+
+\uwave{slu.}
+
+Assume $u(x,t) = f(x) + g(t)$,
+
+\[u(x,0) = f(x) +g(0) = x^2 \implies f(x) = x^2\text{ and
+  }g(0) = 0\]
+\[u_t = f_t+g_t = f_{xx} +g_{xx} = u_{xx}\]
+\[ \implies 0 + g_t = 2  +0  \implies \dv{g}{t} = 2 \implies g(t) = 2t + C \]
+\[g(0)=0 \implies C = 0\]
+So, \[u(x,t) = x^2 +2t\quad \blacklozenge\]
+\paragraph{7} In linearized gas dynamics (sound), verify the following.
+
+(a) If curl $\bold{v} = 0$ at $t = 0$, then curl $\bold{v} = 0$ at all later times.
+
+(b) Each component of $\vb{v}$ and $ρ$ satifies the wave equation.
+
+\uwave{slu.}
+
+Let $\vb{x}\in \R^3$ we know $\curl{\vb{v(0,\vb{x})}} = 0$, we want to
+show $\forall t> 0,\, \curl{\vb{v(t,\vb{x})}} = 0$. That is that the
+curl doesn't change. So it's enough to show,
+\[\dv{t}\curl{\vb{v}}=0\]
+
+Now sound satisfies the following system of equations in page 23,
+\[\begin{cases}\color{White} \pdv{\vb{v}}{t} + \frac{c_0^2}{\rho_0}\grad{\rho} = 0\\
+    \pdv{\rho}{t} +\rho_0\nabla\cdot \vb{v} = 0\end{cases}\]
+
+Since,
+\begin{align*}
+  \dv{t}\curl{\vb{v}}
+  &=\curl{\color{White}\dv{\vb{v}}{t}}\\
+  &=
+    \curl{\color{green}-\color{White}\frac{c_0^2}{\rho_0}\grad{\rho}}\\
+  &= -\frac{c_0^2}{\rho_0}{\color{SkyBlue}\curl{\grad{\rho}}}\\
+  &= -\frac{c_0^2}{\rho_0}{\color{SkyBlue}0} = 0\\
+  \implies &\curl{\vb{v}} \equiv C\in \R\\
+ \curl{\vb{v}(0,\vb{x})} = 0\implies & C = 0
+\end{align*}
+
+So curl $\vb{v}$ is $0$ for all $t>0.$ That completes part (a).
+\newpage
+For part (b), differentiating with respect to $t$ the system of
+eqns. in page 23, should yield the result:
+
+\begin{align*}
+  \begin{cases}\pdv{\vb{v}}{t} + {\color{cyan}\frac{c_0^2}{\rho_0}\grad{\rho}} = 0\\
+  \pdv{\rho}{t} +{\color{white}\rho_0\nabla\cdot \vb{v}} = 0\end{cases}
+  &\implies \begin{cases}\pdv[2]{\vb{v}}{t} + \pdv{}{t}\frac{c_0^2}{\rho_0}\grad{\rho} = 0\\
+    \pdv[2]{\rho}{t} +\pdv{t}\rho_0\nabla\cdot \vb{v} = 0\end{cases}\\
+  &\implies \begin{cases}\pdv[2]{\vb{v}}{t} + \frac{c_0^2}{\rho_0}\grad{\pdv{\rho}{t}} = 0\\
+    \pdv[2]{\rho}{t} +\rho_0\nabla\cdot \pdv{\vb{v}}{t} = 0\end{cases}\\
+&\implies \begin{cases}\pdv[2]{\vb{v}}{t} +
+  \frac{c_0^2}{\rho_0}\grad{\left(  {\color{green} - \color{white} \rho_0\nabla\cdot \vb{v}}\right)} = 0\\
+    \pdv[2]{\rho}{t} +\rho_0\nabla\cdot
+    {\color{green}-\color{cyan}\frac{c_0^2}{\rho_0}\grad{\rho}} =
+    0\end{cases}\\
+  &\implies \begin{cases}\pdv[2]{\vb{v}}{t}  \color{green}
+    -\color{Goldenrod} \frac{c_0^2\cancel{\rho_0}}{\cancel{\rho_0}} {\color{white}\nabla\cdot\color{Goldenrod}\grad{\color{white} \vb{v}}} = 0\\
+    \pdv[2]{\rho}{t} \color{green}
+    -\color{Goldenrod} \frac{\cancel{\rho_0}c_0^2}{\cancel{\rho_0}}
+    {\color{cyan}\color{Goldenrod}\nabla \cdot\color{cyan} \grad{\rho}} =
+    0\end{cases}\\
+  &\implies \begin{cases}\pdv[2]{\vb{v}}{t} = c_0^2\laplacian{\vb{v}}\\
+    \pdv[2]{\rho}{t} =c_0^2 \laplacian{\rho}\end{cases}\\
+\end{align*}
+\subsection*{2.1}
+For 3: Assume that the string has an initial square displacement and that waves propagating
+in opposite directions are produced. Do not assume an initial velocity as you might considering
+it is a hammer strike.
+I’d like you to try problems 5 and 6 from this section, but won’t require them for homework.
+
+
+\paragraph{1} Solve $u_{tt} = c^2 u_{ x x}$, $u(x, 0) = e^x$ , $u_t
+(x, 0) = \sin x$.
+
+\uwave{slu. }
+\begin{align*}
+  u_{tt} = c^2 u_{ x x}
+  &\implies u(x,t) = \frac{1}{2}\left(e^{x+ct}+e^{x-ct}\right) +\frac{1}{2c}
+                          \int_{x-ct}^{x+ct}\sin x dx\\
+  &\implies u(x,t) = \frac{1}{2}\left(e^{x+ct}+e^{x-ct}\right)+
+    \frac{1}{2c}\left(  \cos(x+ct)-\cos(x-ct)\right)\\
+  &\implies u(x,t) = e^x\left(\frac{e^{ct}+e^{-ct}}{2}\right) +
+    \frac{1}{2c}\left(\cos(x+ct)-\cos(x-ct)\right)\\
+  &\implies u(x,t) = e^x\cosh ct + \frac{-2}{2c}\sin\left(
+    \frac{x+ct+x-ct}{2} \right)\sin\left( \frac{x+ct-(x-ct)}{2}
+    \right)\\
+    &\implies u(x,t) = e^x\cosh ct -\frac{1}{c}\sin x \sin ct \quad \blacklozenge
+\end{align*}
+
+\paragraph{2} Solve $u_{tt} = c^2 u_{x x} , u(x, 0) = \log(1 + x^2),
+u_t (x, 0) = 4 + x$.
+
+\uwave{slu.}
+
+\begin{align*}
+  u_{tt} = c^2 u_{ x x}
+  &\implies u(x,t) = \frac{1}{2}\left( \log (1+(x+ct)^2)
+    +\log(1+(x-ct)^2)\right)
+    +\frac{1}{2c}
+      \int_{x-ct}^{x+ct} 4+x \dd{x}\\
+       &\implies u(x,t) = \frac{1}{2}\log ((1+ (x+ct)^2)(1 +(x-ct)^2))
+       +4t+xt\\
+    &\implies u(x,t) = \log (\sqrt{x^4+2(1-c^2t^2)x^2+(1 + c^2t^2)^2})     +4t+xt \quad \blacklozenge
+\end{align*}
+
+\newpage
+\paragraph{3} The midpoint of a piano string of tension $T$, density $ρ$, and length $l$ is hit
+by a hammer whose head diameter is $2a$. A flea is sitting at a distance
+$l/4$ from one end. (Assume that $a < l/4$; otherwise, poor flea!) How long
+does it take for the disturbance to reach the flea?
+
+\uwave{slu. }
+
+The hammer hits the midpoint of  the string at $l/2$, since the hammer
+head is $2a$, at $t = 0$, the hammer extends from $l/2 -a$ to $l/2
++a$. This generates two waves going at wave speed $c = \sqrt{T/\rho}$.
+
+The wave speed is constant thus $\varDelta x = \sqrt{T/\rho}t$.
+
+The distance between the right side of the string that hits the hammer
+to the point $3l/4$ where the flea is sitting is,
+\[3l/4 - (l/2 +a) = l/4 - a = \varDelta x\]
+
+\[\implies l/4 -a = \sqrt{T/\rho}t \implies t =
+  \sqrt{\rho/T}(l/4-a)\quad \lozenge\]
+
+\paragraph{9} Solve $u_{x x} − 3u_{xt} − 4u_{tt} = 0, u(x, 0) = x^2 ,
+u_t (x, 0) = e^x$ . (\textit{Hint:} Factor the operator as we did for
+the wave equation.)
+
+\uwave{slu.}
+
+\[u_{x x} − 3u_{xt} − 4u_{tt} = 0 \iff \left( \pdv[2]{x}
+    -3\pdv{}{x}{t} -4\pdv[2]{t} \right)u = 0
+  \iff \left( \pdv{x}-4\pdv{t} \right)\left( \pdv{x}+\pdv{t} \right) u
+  = 0\]
+
+Let $v = \left( \pdv{x} + \pdv{t} \right) u$,
+
+\[\left( \pdv{x}-4\pdv{t}\right)v = 0 \implies v_x -4v_t = 0\implies -v_x +4v_t = 0 \implies v(x,t) = f(4x+t)\]
+\[v = \left( \pdv{x} + \pdv{t} \right) u \implies u_x+u_t = f(4x+t)\]
+\[u_x(x,0) = 2x\text{ and }u_t(x,0) = e^x \implies 2x+e^x = f(4x)\]
+
+Let $g(s) = \frac{1}{4} s$ and $h(s) = 2s + e^s$
+
+\[f= h\circ g \implies f(4x+t) = h(x+\frac{1}{4}t) = 2x+\frac{1}{2}t
+  +e^{x+\frac{1}{4}t} \implies f(4x+0) = 2x+0+e^x+0\]
+
+So, $f$ works, and we have,
+\begin{equation}
+  u_x+u_t = 2x+\frac{1}{2}t
+  +e^{x+\frac{1}{4}t}
+\end{equation}
+
+Now the left hand side factors as,\[u_x+u_t = \langle 1,1
+  \rangle\grad{u}\]
+
+This suggests the following change of variables, $y= x+t$ and $z =
+x-t$ which gives,
+\[u_x = u_y+u_z\text{ and }u_t =u_y-u_z\]
+\[x = \frac{y+z}{2}\text{ and } t = \frac{y-z}{2}\]
+Plugging into (1)
+\[u_y+u_z+u_y-u_z= 2u_y = 2\frac{y+z}{2} +\frac{1}{2}\frac{y-z}{2}
+  +e^{\frac{y+z}{2}+\frac{1}{4}\frac{y-z}{2}}\]
+\[\implies u_y = \frac{y+z}{2} +\frac{1}{4}\frac{y-z}{2}
+  +\frac{1}{2}e^{\frac{y+z}{2}+\frac{1}{4}\frac{y-z}{2}}\]
+\[\implies u_y = \frac{5}{8}y+\frac{3}{8}z
+  +\frac{1}{2}e^{\frac{5}{8}y+\frac{3}{8}z}\]
+\[\implies u_y = \frac{5}{8}y+\frac{3}{8}z
+  +\frac{1}{2}e^{\frac{3}{8}z}e^{\frac{5}{8}y}\]
+
+Regarding $z$ as fixed we can integrate with respect to $y$,
+
+\begin{align*}
+  u(y,z) &= \int \frac{5}{8}y+\frac{3}{8}z
+           +\frac{1}{2}e^{\frac{3}{8}z}e^{\frac{5}{8}y}\dd{y}\\
+  &= \frac{5}{16}y^2+\frac{3}{8}yz
+    +\frac{8}{10}e^{\frac{3}{8}z}e^{\frac{5}{8}y} + k(z)\\
+\end{align*}
+\begin{equation}  u(y,z)=  \frac{5}{16}y^2+\frac{3}{8}yz
+  +\frac{4}{5}e^{\frac{3}{8}z}e^{\frac{5}{8}y} + k(z)
+\end{equation}
+
+Then plugging $x$ and $t$ back into (2)
+\[u(x,t) = \frac{5}{16}(x+t)^2+\frac{3}{8}(x+t)(x-t)
+           +\frac{4}{5}e^{\frac{3}{8}(x-t)}e^{\frac{5}{8}(x+t)} +
+           k(x-t)\]
+
+Now simplifying gives
+\begin{align*}
+  u(x,t) &= \frac{5}{16}(x+t)^2+\frac{3}{8}(x+t)(x-t)
+           +\frac{4}{5}e^{\frac{3}{8}(x-t)}e^{\frac{5}{8}(x+t)} +
+           k(x-t)\\
+  &= \frac{5}{16}(x^2+2xt+t^2)+\frac{3}{8}(x^2-t^2)
+           +\frac{4}{5}e^{\frac{3}{8}(x-t)+\frac{5}{8}(x+t)} +
+    k(x-t)\\
+  &= \frac{11}{16}x^2+\frac{5}{8}xt-\frac{1}{16}t^2
+           +\frac{4}{5}e^{x +\frac{1}{4}t} +
+           k(x-t)\\
+\end{align*}
+\begin{equation}
+  u(x,t) = \frac{11}{16}x^2+\frac{5}{8}xt-\frac{1}{16}t^2
+           +\frac{4}{5}e^{x +\frac{1}{4}t} +
+           k(x-t)
+  \end{equation}
+Now we need $k$ such that $u(x,0)= x^2$, so we plug $0$ into (3)
+
+\begin{align*}
+  u(x,0) &= \frac{11}{16}x^2+\frac{5}{8}x0-\frac{1}{16}0^2
+           +\frac{4}{5}e^{x +\frac{1}{4}0} +
+           k(x-0)\\
+  &= \frac{11}{16}x^2
+           +\frac{4}{5}e^{x} +
+    k(x) = x^2\\
+  \implies& k(x) = x^2 - \frac{11}{16}x^2
+            -\frac{4}{5}e^{x} \\
+  \implies& k(x) = \frac{5}{16}x^2 -\frac{4}{5}e^{x} \\
+  \implies& k(x-t) = \frac{5}{16}(x-t)^2 -\frac{4}{5}e^{x-t} \\
+\end{align*}
+
+Now we can plug $k(x-t)$ back into (3)
+
+\begin{align*}
+  u(x,t) &= \frac{11}{16}x^2+\frac{5}{8}xt-\frac{1}{16}t^2
+           +\frac{4}{5}e^{x +\frac{1}{4}t} +
+           \frac{5}{16}(x-t)^2 -\frac{4}{5}e^{x-t}\\
+  &= \frac{11}{16}x^2+\frac{5}{8}xt-\frac{1}{16}t^2
+           +\frac{4}{5}e^{x +\frac{1}{4}t} +
+    \frac{5}{16}(x^2-2xt+t^2) -\frac{4}{5}e^{x-t}\\
+    &= \left( \frac{11}{16}+\frac{5}{16}\right)x^2+\frac{5}{8}xt-\frac{5}{8}xt+\left( \frac{5}{16}- \frac{1}{16}\right)t^2
+           +\frac{4}{5}e^{x +\frac{1}{4}t}
+      -\frac{4}{5}e^{x-t}\\
+  &= x^2+\frac{1}{4}t^2 +\frac{4}{5}e^{x +\frac{1}{4}t}
+    -\frac{4}{5}e^{x-t}\\
+\end{align*}
+Thus,
+\begin{equation}
+  u(x,t) = x^2+\frac{1}{4}t^2 +\frac{4}{5}e^{x-t}\left(  e^{\frac{5}{4}t}-1\right)
+\end{equation}
+\begin{sagesilent}
+  var('x,t')
+  u = x^2 +(1/4)* t^2 +(4/5) *(e^(5*t/4)-1) * e^(x-t)
+  u_xx = u.derivative(x,2)
+  u_xt = u.derivative(x).derivative(t)
+  u_tt = u.derivative(t,2)
+\end{sagesilent}
+
+We get $u(x,0)= x^2$ and $u_t(x,0)= e^x$, and,
+
+\[u_{xx} =\sage{u_xx}\text{ and }u_{xt} = \sage{u_xt}\text{ and
+  }u_{tt} = \sage{u_tt} \]
+\[u_{xx} -3u_{xt}-4u_{tt} = \sage{u_xx-3*u_xt -4*u_tt}\]
+
+
+
+% So the change of variables didn't work...
+
+% Let's try it the other way around.
+% \[\left( \pdv{x}-4\pdv{t} \right)\left( \pdv{x}+\pdv{t} \right) u
+%   = 0 \implies \left( \pdv{x}+\pdv{t} \right)\left( \pdv{x}-4\pdv{t} \right) u
+%   = 0\]
+
+% Let $v = u_x-4u_t$, then
+
+% \[v_x+v_t = 0 \implies v(x,t) = f(x-t) \implies 2x+e^x=f(x)\implies
+%   f(x-t) = 2(x-t)+e^{x-t}\]
+% \[\implies u_x-4u_t = 2(x-t)+e^{x-t}\]
+
+% Let $y = x-4t$ and $z = -4x -t$ then,
+% \[x = \frac{y-4z}{17}\text{ and } t = -\frac{4y+z}{17}\implies x-t =
+%   \frac{-3y-5z}{17} = -\frac{3y+5z}{17}\]
+% \[u_x = u_y-4u_z\text{ and }u_t = -4u_y-u_z\implies u_y-4u_z
+%   -4(-4u_y-u_z) = 17u_y = 2\left(-\frac{3y+5z}{17}\right)+
+%   e^{-\frac{3y+5z}{17}}\]
+% Then,
+% \[u_y = \frac{2}{17}\left(-\frac{3y+5z}{17}\right)+
+%   \frac{1}{17} e^{-\frac{3y+5z}{17}}\]
+% \begin{sagesilent}
+%   var('y,z')
+%   u = -1*(2/17)*(3*y+5*z)/17 + (1/17)*exp(-1*(1/17)*(3*y+5*z))
+%   iu = u.integral(y)
+% \end{sagesilent}
+
+% We can regard $z$ as fixed and integrate,
+
+% \[u(y,z) = \sage{iu} + k(z)\]
+
+% Now substitute $x$ and $t$ back in,
+% \[u(x,t) = \sage{iu.subs(y= x-4*t).subs(z = -4*x-1*t) } + k(-4x-t)\]
+% \[\implies u(x,t) = \sage{iu.subs(y= x-4*t).subs(z =
+%     -4*x-1*t).full_simplify() } + k(-4x-t)\]
+% It has to satisfy $u(x,0)= x^2$, solution
+% \[\implies u(x,t) = \sage{iu.subs(y= x-4*t).subs(z =
+%     -4*x-1*t).full_simplify().subs(t=0) } + k(-4x) = x^2\]
+% \[\implies k(-4x) = \sage{(x^2 - iu.subs(y= x-4*t).subs(z =
+%     -4*x-1*t).full_simplify().subs(t=0)).full_simplify() }\]
+% \begin{sagesilent}
+%   var('s')
+%   m = (252/289)*s^2 +(1/3)*exp(s)
+%   l = -1*(1/4)*s
+%   k = m.subs(s = l.subs(s=-4*x-t))
+%   fu = iu.subs(y= x-4*t).subs(z = -4*x-1*t).full_simplify() +k
+% \end{sagesilent}
+% Let $l(s) = -\frac{1}{4}s$ and $m(s) = \sage{m}$,
+% \[k(-4s) = (m\circ l)(-4s) = \sage{m.subs(s = l.subs(s=-4*s))} \]
+% \[\implies k(-4x-t) = (m\circ l)(-4s) = \sage{m.subs(s =
+%     l.subs(s=-4*x-t))} \]
+
+% \[\implies  u(x,t) = \sage{fu}\]
+% \[\implies  u(x,t) = \sage{fu.full_simplify()}\]
+% \begin{sagesilent}
+%   u_t = fu.derivative(t)
+%   u_xx = fu.derivative(x,2)
+%   u_xt = fu.derivative(x).derivative(t)
+%   u_tt = fu.derivative(t,2)
+% \end{sagesilent}
+% Again we have $u(x,0)= \sage{fu.subs(t=0)}$ and $u_t(x,0) = \sage{u_t.subs(t=0)}$
+% \[u_{xx} -3u_{xt}-4u_{tt} = \sage{u_xx-3*u_xt -4*u_tt}\]
+
+% I must have made a mistake, now let's try adjusting such  that
+% $u_t(x,0)= e^x$
+% \[u(x,t) = x^2 -\frac{1}{4}t^2 -\frac{4}{3}\left( e^{\frac{1}{4}t}-e^t
+%   \right)e^x\]
+% \begin{sagesilent}
+%   ffu = x^2 -1*(1/4)*t^2 -1*(4/3)*(exp((1/4)*t)-exp(t))*exp(x)
+%   u_t = ffu.derivative(t)
+%   u_xx = ffu.derivative(x,2)
+%   u_xt = ffu.derivative(x).derivative(t)
+%   u_tt = ffu.derivative(t,2)
+% \end{sagesilent}
+
+% Now we have $u(x,0)= \sage{fu.subs(t=0)}$ and $u_t(x,0) = \sage{u_t.subs(t=0)}$
+% \[u_{xx} -3u_{xt}-4u_{tt} = \sage{(u_xx-3*u_xt -4*u_tt).full_simplify()}\]
+
+% Which is arguably worse...
+
+
+% I guess at this point we can guess that solutions will be of the form,
+% \[u(x,t) = x^2 +f(t) +\frac{e^x}{C}(e^{Ct}-g(t)): f(0) = 0 \text{ and
+%   } g(0) = 1\]
+
+% \[u_t(x,t) = f'(t) +e^x(e^{Ct} -g'(t)): f'(0) = 0 \text{
+%     and }g'(0) = 0\]
+
+% \[u_{xx} = 2 +\frac{e^x}{C}(e^{Ct}-g(t))\text{ and }u_{tx}= u_{xt} =
+%  e^x(e^{Ct} -g'(t)) \text{ and }u_{tt}  = f''(t) +Ce^x(e^{Ct}
+%  -g''(t))\]
+% \[\implies 2 +\frac{e^xe^{Ct}}{C}-\frac{e^xg(t)}{C} -3e^x(e^{Ct} -g'(t))-4(f''(t) +Ce^x(e^{Ct}
+%   -g''(t))) = 0 \]
+% \[\implies 2 +\frac{e^xe^{Ct}}{C}-\frac{e^xg(t)}{C} -3e^xe^{Ct} +3e^xg'(t)-4f''(t) -4Ce^xe^{Ct}
+%   +4Cg''(t) = 0 \]
+% \[\implies 2 +3e^xg'(t)-4f''(t)
+%   +4Cg''(t) -\frac{e^xg(t)}{C}
+%   -3e^xe^{Ct}+\frac{e^xe^{Ct}}{C}-4Ce^xe^{Ct} = 0 \]
+% \[\implies 2 -4f''(t) +4Cg''(t) +3e^xg'(t)
+%   -\frac{e^xg(t)}{C} +\left(\frac{1}{C}-3-4C\right)e^xe^{Ct} = 0 \]
+
+% Since $e^{x}e^{Ct}\neq 0$, then
+% \[\frac{1}{C}-3-4C = 0\implies 4C^2 +3C -1 = 0 \implies C =
+%   \frac{-3\pm\sqrt{9-4(4)(-1)}}{2} \implies C = 1 \text{ or } C = -4\]
+
+% Nope... This is definitely not working...
+
+% Slader said that
+
+% \[u(x,t)= f(4x+t)\text{ or } u(x,t) = g(x-t)\]
+
+% And since the equation is linear you can take $u$ to be the sum of
+% both solutions
+
+% \[u(x,t) = f(4x+t)+g(x-t)\]
+
+% They computed
+% \[u(x,t) = x^2+\frac{1}{4}t^2 +\frac{4}{5}e^x\left( e^{\frac{3}{4}t} -1\right)\]
+% Chegg to the rescue...
+
+% \[u_{x x} − 3u_{xt} − 4u_{tt} = 0 \iff \left( \pdv[2]{x}
+%     -3\pdv{}{x}{t} -4\pdv[2]{t} \right)u = 0
+%   \iff \left( \pdv{x}-4\pdv{t} \right)\left( \pdv{x}+\pdv{t} \right) u
+%   = 0\]
+
+% The general form of the that equation is the following, and it is
+% solvable  if $ad-bc\neq 0$
+% \[\begin{cases}\left( a\pdv{x}+b\pdv{t} \right)\left( c\pdv{x}+d\pdv{t} \right) u
+%   = 0 \\ u(x,0) =\phi(x) \text{ and  }u_t(x,0) = \psi(x)\end{cases}\]
+% And the solution is given by\[ u(x,t) = \frac{bd}{ad-bc}\left(
+%     \int_0^{x-\frac{c}{d}t} \psi(y) \dd{y} -\int_0^{x-\frac{a}{b}t}
+%     \psi(y) \dd{y} \right) +
+%   \frac{ad}{ad-bc}\phi(x-\frac{c}{d}t)-\frac{bc}{ad-bc}\phi(x-\frac{a}{b}t)\]
+
+% Substituting $\psi(x) = e^x$ and $\phi(x) = x^2$ we get,
+
+% \begin{sagesilent}
+%   from sage.symbolic.integration.integral import definite_integral
+%   var('a,b,c,d,x,t,y')
+%   u = ((b*d*(definite_integral(exp(y),y,0, x-(c/d)*t)-definite_integral(exp(y),y,0,x-(a/b)*t)) +a*d*(x-(c/d)*t)^2-b*c(x-(a/b)*t)^2)/(a*d-b*c))
+% \end{sagesilent}
+% \[u(x,t) = \sage{u}\]
+% Substituting $a =1, b=-4,c=1,d=1$ we get,
+% \begin{sagesilent}
+%   u = u.subs(a=1,b=-4,c=1,d=1)
+%   u_xx = u.derivative(x,2)
+%   u_xt = u.derivative(x).derivative(t)
+%   u_tt = u.derivative(t,2)
+% \end{sagesilent}
+% \[u(x,t) = \sage{u}\]
+% \[u_{xx} =\sage{u_xx}\]\[\text{ and }u_{xt} = \sage{u_xt}\]\[\text{ and
+%   }u_{tt} = \sage{u_tt} \]
+% \[u_{xx} -3u_{xt}-4u_{tt} = \sage{u_xx-3*u_xt -4*u_tt}\]
+
+% Furthermore, $u(x,0)= \sage{u.subs(t=0)}$ and $u_t(x,0)= \sage{u.derivative(t).subs(t=0)}$.
+
+% I want to simplify a little though,
+% \[u(x,t) = \frac{1}{20}(t^2 + 8xt + 16x^2) +\frac{1}{5}(t^2-2xt+x^2) +\frac{4}{5}e^{x-t}\left( e^{\frac{5}{4}t} -1\right)\]
+
+% \[u(x,t) = \frac{1}{4}t^2 +x^2 +\frac{4}{5}e^{x-t}\left( e^{\frac{5}{4}t} -1\right)\]
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

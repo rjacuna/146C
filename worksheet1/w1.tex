@@ -1,0 +1,397 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{Goldenrod}
+
+
+
+\begin{document}
+
+\begin{center}
+  146C --- Worksheet 1
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+
+\subsection*{Problem 1.} Use the mean value theorem to show that there is a unique solution to the initial
+value problem \[\begin{cases}x'(t) = 0 \\ x(t_0) = c \end{cases}\]
+
+\uwave{pf. }
+
+Let $[a,b]\subset [R],$ since $x'(t)= 0\implies x(t)$ is
+differentiable. So, by MVT $\exists d\in (a,b):$\[x(b)-x(a) =
+  x'(d)(b-a) = 0 \implies x(b)= x(a) \implies x(t)\text{ is constant.}\]
+\[x(t_0)= c\implies x(t)= c\quad \blacksquare\]
+
+\subsection*{Problem 2.} Suppose $u$ is a function of $(t,x)$ and that
+\[\begin{cases}\pdv{u}{t} = 0 \\ u(0,x) = f(x) \end{cases}\]where $f$ is a continuously differentiable function. Solve for $u$. Take $f (x)$ to be equal to $x^2$ and
+then once again solve for $u$.
+
+\uwave{slu.}
+
+\[\pdv{u}{t}= 0 \implies u(t,x) = g(x)\]
+\[u(0,x) = f(x)\implies u(t,x) = f(x)\]
+\[f(x) = x^2 \implies u(t,x) = x^2\quad \lozenge\]
+
+\subsection*{Problem 3.} Suppose that at every point in the $t-x$ plane, the derivative of the function $u$ in
+the direction $\vb{v}$ is zero. Take $\vb{v}$ to be equal to $\langle   a,
+b \rangle $.
+
+(a) Let $V$ be the constant vector field
+\[V(t,x) = \vb{v}\text{ .}\]
+Find all curves in the plane that are integral curves of $V$.
+
+\uwave{slu.}
+\[\dv{x}{t} = \frac{b}{a}\implies x = \frac{b}{a}t + C \implies ax
+  - bt  = C \]
+\newpage
+(b) Find a system of coordinates $(τ, y)$ so that,
+\[\pdv{f}{y} = \vb{v}\cdot \grad{f}\]
+
+\uwave{slu.}
+
+\[\vb{v}\cdot \grad{f} = \langle a,b \rangle\cdot \langle
+  \pdv{f}{t},\pdv{f}{x} \rangle =a\pdv{f}{t}+b\pdv{f}{x}\]
+
+\begin{equation} \pdv{f}{t} = {\pdv{f}{\tau}} {\color{green} \pdv{\tau}{t}} +{\pdv{f}{y}} {\color{green}\pdv{y}{t}} =
+  {\color{green}\pdv{\tau}{t}}\pdv{f}{\tau}
+  +{\color{green}\pdv{y}{t}}\pdv{f}{y}
+\end{equation}
+\begin{equation}
+  \pdv{f}{x} = {\pdv{f}{\tau}}{\color{green}\pdv{\tau}{x}}
+  +{\pdv{f}{y}}{\color{green} \pdv{y}{x}} =
+  {\color{green}\pdv{\tau}{x}}\pdv{f}{\tau}
+  +{\color{green}\pdv{y}{x}}\pdv{f}{y}
+  \end{equation}
+
+If ${\color{red} a} = {\color{red}b} = 0$, then the equation imposes a
+condition on $f$, that is that $f$ must be a constant in $y$.
+
+If ${\color{red}a} = 0$, then
+\[\vb{v}\cdot \grad{f} = b\pdv{f}{x}\]
+
+Let $\tau = -bt$
+
+\[\pdv{f}{t}
+  \overset{(1)}{=} {\color{cyan} -b}\pdv{f}{\tau}
+  +{\color{green}\pdv{y}{t}}\pdv{f}{y}\quad\text{ and }\quad\pdv{f}{x} \overset{(2)}{=} {\color{red} 0} + {\color{green}
+    \pdv{y}{x}}\pdv{f}{y}\]
+\[\implies {\color{red} 0}\pdv{f}{t} + {\color{green}b}\pdv{f}{x} ={\color{green}
+    b\pdv{y}{x}}\pdv{f}{y} \]
+Let $y = {\color{cyan}\frac{1}{b}}x$, then
+\[\vb{v}\cdot\grad{f} = {\color{green}
+    b\pdv{y}{x}}\pdv{f}{y} ={\color{green}
+    b}{\color{cyan}\frac{1}{b}}\pdv{f}{y}= \pdv{f}{y}\]
+
+If ${\color{red}b} = 0$, then
+\[\vb{v}\cdot \grad{f} = a\pdv{f}{t}\]
+Let $\tau = ax$
+
+\[\pdv{f}{t} \overset{(1)}{=} {\color{red} 0}
+  +{\color{green}\pdv{y}{t}}\pdv{f}{y}\quad \text{ and }\quad\pdv{f}{x} \overset{(2)}{=}  {\color{cyan} a}\pdv{f}{\tau} + {\color{green}
+    \pdv{y}{x}}\pdv{f}{y}\]
+\[\implies {\color{green} a}\pdv{f}{t} + {\color{red} 0}\pdv{f}{x} ={\color{green}
+    a\pdv{y}{t}}\pdv{f}{y} \]
+Let $y = {\color{cyan}\frac{1}{a}}t$, then
+\[\vb{v}\cdot\grad{f} = {\color{green}
+    a\pdv{y}{t}}\pdv{f}{y} ={\color{green}
+    a}{\color{cyan}\frac{1}{a}}\pdv{f}{y}= \pdv{f}{y}\]
+
+If $a\neq 0$, and $b\neq 0$ Let $\tau = ax - bt,$
+\[\pdv{f}{t} \overset{(1)}{=}  {\color{cyan} -b}\pdv{f}{\tau}
+  +{\color{green}\pdv{y}{t}}\pdv{f}{y}\quad \text{ and }\quad \pdv{f}{x} \overset{2}{=}  {\color{cyan} a}\pdv{f}{\tau} +{\color{green}
+    \pdv{y}{x}}\pdv{f}{y}\]
+So,
+\[{\color{green}a}\pdv{f}{t} +{\color{green} b}\pdv{f}{x} =
+  {\color{green}a}\left(  {\color{cyan} -b}{\color{white}\pdv{f}{\tau}}
+    +{\color{green}\pdv{y}{t}}\pdv{f}{y}\right) +{\color{green}
+    b}\left(  {\color{cyan} a}{\color{white} \pdv{f}{\tau}}
+    +{\color{green}\pdv{y}{x}}\pdv{f}{y}\right) =
+  \left({\color{red}a}{\color{green}\pdv{y}{t}}
+    +{\color{red}b}{\color{green}\pdv{y}{x}}\right)\pdv{f}{y}\]
+We want,\[\left({\color{blue}a}{\color{green}\pdv{y}{t}}
+    +{\color{blue}b}{\color{green}\pdv{y}{x}}\right) = 1\]
+Let $y = {\color{cyan} \frac{1}{b}}x$, then
+\[\vb{v}\cdot \grad{f} = \left({\color{blue}a}{\color{green}\pdv{y}{t}}
+    +{\color{blue}b}{\color{green}\pdv{y}{x}}\right) \pdv{f}{y} =
+  \pdv{f}{y} \hspace{7em}\blacklozenge\]
+\newpage
+(c) What curves are the level sets of the $y$ coordinate and how do these curves intersect the
+integral curves of $V$?
+
+\uwave{slu.}
+That is if $b\neq 0$, the level sets of the $y$ coordinate are $\frac{1}{b}x = D \iff x =
+bD$. And they are vertical lines in the $t-x$ plane that intersect $x =
+\frac{b}{a}t+C$ at one point. Otherwise, the level sets
+are $\frac{1}{a}t = K\iff t = aK$ are  horizontal lines, that
+intersect the vertical lies $x = C$ at right angles$\quad\lozenge$
+
+\subsection*{Problem 4.} Suppose that $a$ and $b$ are constants. Solve
+the equation
+\[au_t+bu_x = 0\text{ with } u(0,x) = f(x)\]
+
+\uwave{slu.}
+\[au_t+bu_x = 0\iff \langle a,b \rangle\cdot \grad{u} = 0\]
+
+Then $\grad{u}$ is constant in the direction of $\langle a,b
+\rangle$. So, $u(t,x) = g(ax - bt)$.
+
+If $u(0,x) = f(x)$, then $g(ax) =
+f(x) \implies u(t,x) = f(\frac{ax-bt}{a})\quad \blacklozenge$
+
+\subsection*{Problem 5.} Suppose that $u$ is a function on $\R$. Solve the equation
+\[u' + 3u = 0.\]
+
+\uwave{slu.}
+\[u' + 3u = 0\iff u' = -3u\]
+
+The characterizing property of the exponential function is that it is
+its own derivative.
+
+Ass. $u = e^{f(t)}$,
+\[u = e^{f(t)} \implies u' = e^{f(t)}f'(t) \implies f'(t) = -3
+  \implies f(t) = -3t + C\]
+\[\implies u = e^{-3t+C} = Ke^{-3t} \implies u' =  -3Ke^{-3t}\]
+\[-3Ke^{-3t} + 3Ke^{-3t}= 0 \implies u'+3u =0 \text{ as
+    required}\]
+So, $u = Ke^{-3t}$ solves the equation$\quad \lozenge$
+
+Additionally, solve the inhomogenous problem
+\[u' + 3u = t+1.\]
+
+\uwave{slu.}
+\setcounter{equation}{0}
+
+\begin{equation} (fg)' = f'g+fg'\end{equation}
+
+If \begin{equation}g'= hg \iff g'-hg = 0\end{equation}, then
+\begin{equation}f'g+fg' = f'g+fhg = g(f'+hf)\end{equation}
+
+The first part hints that (2), has solution\[g(t) = e^{\int_{t_0}^t h(t)
+  dt}
+\implies g'(t) = e^{\int_{t_0}^t h(t)
+  dt}\left( \int_{t_0}^t h(t)
+  dt \right)' \overset{FTC 1}{=} h(t)e^{\int_{t_0}^t h(t)
+  dt}\]
+\[h(t)e^{\int_{t_0}^t h(t)
+    dt}-h(t)e^{\int_{t_0}^t h(t)
+    dt} = 0\]
+\newpage
+
+Therefore, \[g(t)(f'(t)+h(t)f(t)) = e^{\int_{t_0}^t h(t) dt}(f'(t) +h(t)f(t) = \left(
+  f(t)e^{\int_{t_0}^t h(t) dt}\right)'\]
+
+Let $h(t) = 3$, then $g(t) = e^{\int_{0}^t 3dt} = e^{3t}$. Let $f(t)=
+u(t)$, then
+\[  u'(t)+3u(t) = t+1 \iff e^{3t}(u'(t)+3u(t)) = e^{3t}(t+1) \iff
+  (u(t)e^{3t})' = e^{3t}(t+1)\]
+\[\implies u(t)e^{3t} = \int e^{3t}(t+1) \dd{t} \implies u(t) =
+  e^{-3t}\int  e^{3t}(t+1) \dd{t}\]
+\begin{align*}
+  \implies u(t) &=  e^{-3t}\int  e^{3t}(t+1) \dd{t} & u= t+1 &\hspace{2em}\dd{v} = e^{3t} \dd{t}\\
+                &                                   &\dd{u}= \dd{t}&\hspace{2.3em} v = \frac{1}{3}e^{3t}\\
+  \implies u(t) &= e^{-3t} \left( \frac{1}{3}e^{3t}(t+1) -\int
+                  \frac{1}{3}e^{3t} \dd{t}\right)&&\\
+  \implies u(t) &= e^{-3t} \left(  \frac{1}{3}e^{3t}(t+1)
+  -\frac{1}{9}e^{3t} + C\right)&&\\
+    \implies u(t) &=  \frac{1}{3}(t+1)
+                    -\frac{1}{9} + Ce^{-3t}&&\\
+  \implies u(t) &=  \frac{1}{3}t+
+                  \frac{2}{9} + Ce^{-3t}&&\\
+  \implies u'(t) &=  \frac{1}{3}-3Ce^{-3t}&&\\
+\end{align*}
+Plugging in,
+\[u'(t)+3u(t) = \frac{1}{3}-3Ce^{-3t} + t+
+  \frac{2}{3} + 3Ce^{-3t} = t+1\]
+
+So, $u(t) = \frac{1}{3}t+\frac{2}{9}+ Ce^{-3t},$ solves the
+inhomogeneous problem$\quad \blacklozenge$
+
+\subsection*{Problem 6.} Solve the equation
+\[u_t + 2u_x +15u = 10x +5t +5.\]
+\uwave{slu.}
+
+Let $\tau = x-2t,$ and $y = \frac{1}{2}x$, then \[u_t+2u_x = u_y\]
+
+Compute $x = 2y \implies \tau = 2y -2t \implies t =
+\frac{2y-\tau}{2}$, then
+
+\begin{align*}u_t + 2u_x +15u = 10x +5t +5
+  &\implies u_y +15u = 20y
+                                             +5\frac{2y-\tau}{2} +5\\
+  &\implies u_y +15u = 25y
+    -\frac{5}{2}\tau +5\\
+  &\implies e^{15y}\left(   u_y +15u\right) = e^{15y}\left(  25y
+    -\frac{5}{2}\tau +5\right)\\
+  &\implies (u\cdot e^{15y})' = e^{15y}\left(  25y
+    -\frac{5}{2}\tau +5\right) dy\\
+  &\implies u(\tau, y) = e^{-15y} \int e^{15y}\left(  25y
+    -\frac{5}{2}\tau +5\right) dy\\
+  &\implies u(\tau, y) =  \frac{25}{15}y-\frac{5}{30}\tau
+    +\frac{5}{15}-\frac{25}{15^2} +f(\tau)e^{-15y}\\
+  &\implies u(\tau, y) =  \frac{5}{3}y-\frac{1}{6}\tau
+    +\frac{2}{9} +f(\tau)e^{-15y}
+\end{align*}
+Therefore,
+\begin{align*}
+  \implies u(t, x) &=  \frac{5}{3}\cdot\frac{1}{2} x -\frac{1}{6}\left( x-2t \right)
+                        +\frac{2}{9} +f(x-2t)e^{-\frac{15}{2}x}\\
+  \implies u(t, x) &=  \frac{4}{6} x +\frac{1}{3}t
+                        +\frac{2}{9} +f(x-2t)e^{-\frac{15}{2}x}\\
+\end{align*}
+
+Consider $h(t,x) = f(x-2t)e^{-\frac{15}{2}x}$
+\begin{align*}
+  h_t(t,x) &=-2f'(x-2t)e^{-\frac{15}{2}x} \text{ and } h_x(t,x)
+                                          =f'(x-2t)e^{-\frac{15}{2}x}
+                                          -\frac{15}{2}f(x-2t)e^{-\frac{15}{2}x}\\
+  \implies& -2f'(x-2t)e^{-\frac{15}{2}x} +2\left(f'(x-2t)e^{-\frac{15}{2}x}
+                                                      -\frac{15}{2}f(x-2t)e^{-\frac{15}{2}x}
+  \right) + 15 f(x-2t)e^{-\frac{15}{2}x} = 0
+\end{align*}
+
+So, $h(t,x)$, solves the homogeneous equation $u_t +2u_x + 15u = 0.$
+
+\begin{sagesilent}
+  var('t,x')
+  u = (4/6)*x+(1/3)*t +2/9
+  u_t = u.derivative(t)
+  u_x = u.derivative(x)
+\end{sagesilent}
+Now consider, $p(t,x) = \frac{4}{6} x +\frac{1}{3}t
+                        +\frac{2}{9}$, computation shows:
+\[p_t +2p_x +15 p = \sage{u_t} +2\left( \sage{u_x} \right)+ 15\left(
+    \sage{u}\right) = \sage{u_t +2*u_x +15*u}\]
+
+So, $u(t,x) = \frac{4}{6} x +\frac{1}{3}t
++\frac{2}{9} +f(x-2t)e^{-\frac{15}{2}x}$,
+solves the equation$\quad \lozenge$
+
+Compare this with Problem 5: It's the same thing.
+
+What happens if we change the inhomogeneous part
+to be different. For example, solve the equation
+\[u_t + 2u_x + 15u = 2x + t\]
+
+\uwave{slu.}
+
+$x = 2y \implies 2x = 4y$, and $t = \frac{2y -\tau}{2}$, so $2x+t =5y
+-\frac{1}{2}\tau$.
+
+Then $u(t,x)= \frac{5}{15}y -\frac{1}{30}\tau -\frac{5}{15^2} =
+\frac{1}{3}y-\frac{1}{30}\tau -\frac{1}{45}= \frac{1}{6}x-\frac{1}{30}(x-2t) -\frac{1}{45}=
+\frac{2}{15}x + \frac{1}{15}t -\frac{1}{45}$
+
+\[u_t + 2u_x +15u = \frac{1}{15} + \frac{4}{15} + 2x+t -\frac{1}{3} = 2x+t\]
+
+So, $u(t,x) = \frac{2}{15}x + \frac{1}{15}t -\frac{1}{45} + f(x-2t)e^{-\frac{15}{2}x}$ solves the
+equation $\quad \lozenge$
+
+\subsection*{Problem 7.} Suppose that $u$ is a function of the pairs
+$(t, x)$.
+
+(a) Find the integral curves for the vector field $V$ given by
+\[V(t,x) = \langle 1,2t \rangle.\]
+\uwave{slu.}
+\[\dv{x}{t} = \frac{2t}{1} = 2t\implies x = t^2 + C\quad \lozenge\]
+(b) Find  a solution to the homogeneous problem
+\[u_t +2tu_x = 0.\]
+\uwave{slu.}
+$u(t,x) = f(x-t^2)$ solves the homogeneous problem$\quad \lozenge$
+
+\newpage
+(c) Find a solution to the homogeneous problem
+\[u_t +2tu_x +3u = 0.\]
+\uwave{slu.}
+Let $\tau = x - t^2$, then
+
+\begin{align*} \pdv{u}{t} &=  -2t\pdv{u}{\tau} + {\color{green} \pdv{y}{t}}\pdv{u}{y}\\
+  \pdv{u}{x} &=\hspace{1.62em}\pdv{u}{\tau}+ {\color{green}\pdv{y}{x}}\pdv{u}{y}
+\end{align*}
+\begin{align*}
+  \implies  -2t\pdv{u}{\tau} + {\color{green} \pdv{y}{t}}\pdv{u}{y} +2t\left(
+             \pdv{u}{\tau} + {\color{green} \pdv{y}{x}}\pdv{u}{y} \right) &= \bigg( {\color{green} \pdv{y}{t}}+2t{\color{green} \pdv{y}{x}}\bigg)\pdv{u}{y}
+  \end{align*}
+
+We want\[\bigg( {\color{green} \pdv{y}{t}}+2t{\color{green}
+    \pdv{y}{x}}\bigg) = 1\]
+
+So $y= t\quad$ works. Then,
+\[u_t +2t u_x +3u = 0\implies u_y +3u = 0 \iff e^{3y}(u_y +3u) =
+  (ue^{3y})'  = 0\iff u(\tau,y) = e^{-3y}\int \dd{y}  = f(\tau)e^{-3y}\]
+\[u(t,x) = f(x-t^2)e^{-3t} \implies u_t(t,x) =
+  -2tf'(x-t^2)e^{-3t}-3f(x-t^2)e^{-3t}\text{ and }u_x(t,x) =
+  f'(x-t^2)e^{-3t}\]
+\[\implies -2tf'(x-t^2)e^{-3t}-3f(x-t^2)e^{-3t} +2t f'(x-t^2)e^{-3t}
+  +3f(x-t^2)e^{-3t} = 0\]
+Therefore, $u(t,x) = f(x-t^2)e^{-3t}$, solves the homogeneous
+part$\quad \lozenge$
+
+(c) Find a solution to the inhomogenous problem.
+\[u_t +2tu_x +3u = x-t^2.\]
+\uwave{slu.}
+
+$x-t^2 = \tau$, therefore a particular solution $p(\tau,y)$ is given by.
+\[p(\tau,y) = e^{-3y}\int e^{3y}\cdot\tau \dd{y}  = \frac{\tau}{3}\]
+
+Then, \[p(t,x) = \frac{x-t^2}{3} = \frac{1}{3}x -\frac{1}{3}t^2\]
+\[p_t(t,x) +2tp_x(t,x) +3 p(t,x)= -\frac{2}{3}t +\frac{2}{3}t +
+  3\frac{x-t^2}{3} = x-t^2\]
+So, \[u(t,x) = \frac{x-t^2}{3} + f(x-t^2)e^{-3t} \]
+
+Solves the inhomogeneous problem$\quad \blacklozenge$
+\subsection*{Problem 8.}Can you see a pattern developing in how we solve these kinds of problems. When
+will it be straightforward to solve such problems and what kind of difficulties arise in solving
+problems of this type? Given an example of a problem that should be solvable, but where it
+will by technically difficult if not impossible to get a nice solution
+in a closed form.
+
+\uwave{ans:}
+Yes I can see the pattern now. An example is $a(t,x)u_t +b(t,x)u_x
++c(t,x)u = \sqrt{1-x^4}$, you need a non elementary integral. Also,
+$a,b,$ and $c$ are arbitrary functions of $(t,x)$.
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

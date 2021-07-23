@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{white}
+
+
+
+\begin{document}
+
+\begin{center}
+  Diffusion Equation
+
+  RJ Acuña
+\end{center}\vspace{1.618em}
+
+The following equation looks deceptively simple.
+\begin{equation}
+  \color{Goldenrod} u_t = ku_{xx}
+\end{equation}
+
+It is not! As we
+shall see.
+
+First, we do the standard trick of passing to operators,
+\[\color{Goldenrod}u_t = ku_{xx}\iff u_t -ku_{xx} = 0\iff (\partial_t
+  -k\partial_x^2)u=0\]
+So we obtain the following equation,
+\begin{equation}
+  \color{Goldenrod} (\partial_t
+  -k\partial_x^2)u = 0
+\end{equation}
+
+Now, make the reasonable assumption that we can factor the operator,
+\[\color{Goldenrod}(\partial_t
+  -k\partial_x^2)u=0 \implies (\color{green}\partial_t^{\frac{1}{2}}\color{Goldenrod}
+  {\color{white} +} k\partial_x)(\color{green}\partial_t^{\frac{1}{2}}
+  \color{Goldenrod}{\color{cyan} -} k\partial_x)u=0\]
+
+We need to make sense of $\color{green}\partial_t^{\frac{1}{2}}$, for
+that we turn to Fractional Equations and Models by Sandev and Tomovski
+page 31 formula (2.7). With suitable modifications we can see that
+
+\begin{align*}
+  \partial_{\color{cyan}t}^{\color{green}\frac{1}{2}} w(t,x)
+  &= \frac{1}{\Gamma(1  -{\color{green}\frac{1}{2}})}\int_0^t(t-{\color{cyan}\tau})^{1-{\color{green}\frac{1}{2}}-1}
+    w_{\color{cyan}\tau}({\color{cyan} \tau},x)\dd{\color{cyan}\tau}\\
+  &=
+    \frac{1}{\Gamma({\color{Goldenrod}\frac{1}{2}})}\int_0^t(t-{\color{cyan}
+    \tau})^{-{\color{Goldenrod}\frac{1}{2}}}
+    w_{\color{cyan}\tau}({\color{cyan} \tau},x)\dd{\color{cyan}\tau}\\
+  &= \frac{1}{\color{Goldenrod} \sqrt{\pi}}\int_0^t
+    \frac{w_{\color{cyan}\tau}({\color{cyan} \tau},x)}{\sqrt{t-{\color{cyan}\tau}}}\dd{\color{cyan}\tau}
+\end{align*}
+
+Do a change of variables,
+\begin{align*}
+  z = \sqrt{t-\tau}&\implies z^2 = t - \tau \implies \tau = t-z^2\\
+                   &\implies \dd{z} =
+                     -\frac{1}{2\sqrt{t-\tau}}\dd{\tau} =
+                     -\frac{1}{2z}\dd{\tau}\\
+  &\implies \dd{\tau} = -2z\dd{z}\\
+                   &\implies v(\tau,x) =
+                     v(\tau(t,z),x) = v(t-z^2,x)\\
+                   &\implies \pdv{v}{z} = \pdv{v}{\tau}\pdv{\tau}{z}+
+                     \pdv{v}{x}\pdv{x}{z} = \pdv{v}{\tau}\cdot (-2z) +
+                     \pdv{v}{x}\cdot{0} = -2z\pdv{v}{\tau}\\
+                   &\implies \pdv{v}{\tau} = -\frac{1}{2z}\pdv{v}{z}
+\end{align*}
+Then,
+\begin{align*}\frac{1}{\sqrt{\pi}}\int_0^t
+  \frac{v_{\tau}({\tau},x)}{\sqrt{t-{\tau}}}\dd{\tau}
+ &= \frac{1}{\sqrt{\pi}}\int_{\sqrt{t-0}}^{\sqrt{t-t}}
+   \frac{-\frac{1}{2z} v_{z}(t-z^2,x)}{z}(-2z)\dd{z}\\
+  &= -\frac{1}{\sqrt{\pi}}\int_{0}^{\sqrt{t}}
+    \frac{v_{z}(t-z^2,x)}{z}\dd{z}\\
+  &= -\frac{1}{\sqrt{\pi}}\int_{0}^{\sqrt{t}}
+    v_{z}(t-z^2,x)\dd{\log (z)}
+\end{align*}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

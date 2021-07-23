@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepCyan}{HTML}{006969}
+\definecolor{DeepRed}{HTML}{690000}
+\pagecolor{DeepCyan}
+\color{white}
+
+
+
+\begin{document}
+
+\begin{center}
+  146C --- 4
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+\subsection*{1} Factor the following polynomials:
+\paragraph{(1)} $t^2-x^2 = (t-x)(t+x)$
+\paragraph{(2)} $t^2 +tx -2x^2 = (t-x)(t+2x)$
+\paragraph{(3)} $t^2 +6tx +9x^2 = (t+3x)^2$
+\subsection*{2} Write the following second order differential operators as products of first order
+operators:
+\paragraph{(1)} $\pdv[2]{}{t}-\pdv[2]{}{x} = (\pdv{t}-\pdv{x})(\pdv{t}+\pdv{x})$
+\paragraph{(2)} $\pdv[2]{t} +\pdv{}{x}{t} -2\pdv[2]{}{x} = (\pdv{t}-\pdv{x})(\pdv{t}+2\pdv{x})$
+\paragraph{(3)} $\pdv[2]{}{t} +6\pdv{}{x}{t} +9\pdv[2]{}{x} = (\pdv{t}+3\pdv{x})^2$
+\subsection*{3} Solve for the functions $a$, $b$, and $c$
+\paragraph{(1)} $(\pdv{t}-\pdv{x})a = 0$ \uwave{slu.} $a(t,x) =
+\alpha(t+x)\quad \lozenge$
+\paragraph{(2)} $(\pdv{t}+2\pdv{x})b = 0$ \uwave{slu.} $b(t,x) =
+\beta(2t-x)\quad \lozenge$
+\paragraph{(3)} $(\pdv{t}+3\pdv{x})c = 0 $\uwave{slu.} $c(t,x) =
+\gamma(3t-x)\quad \lozenge$
+\newpage
+\subsection*{4} Solve for the functions $u$, $v$, and $w$
+\paragraph{(1)} $(\pdv{t}+\pdv{x})u = a$
+
+\uwave{slu.}
+
+Let $\tau = t-x$, and $y = t+x$,
+
+Then $u_t = u_{\tau} +u_y$ and $u_x = -u_{\tau}+ u_y$, so
+\[u_t+u_x = 2u_y = \alpha(y) \implies u = f(y) + g(\tau)\]
+where $f'(y) = \frac{1}{2}\alpha(y)$.
+
+Therefore, \[u(t,x) = f(t+x)+g(t-x)\quad \blacklozenge\]
+\paragraph{(2)} $(\pdv{t}-\pdv{x})v = b$
+
+\uwave{slu.}
+
+Let $\tau = t+x$, and $y = 2t-x$,
+
+Then $v_t = v_{\tau} +2v_y$ and $v_x = v_{\tau}- v_y$, so
+\[v_t-v_x = v_y = \beta(y) \implies v = f(y) + g(\tau)\]
+where $f'(y) = \beta(y)$.
+
+Therefore, \[v(t,x) = f(t+x)+g(2t-x)\quad \lozenge\]
+
+\paragraph{(3)} $(\pdv{t}+3\pdv{x})w = c$
+
+Let $y = 3t-x$,
+
+Then $w_t = \tau_tw_{\tau} +3w_y$ and $w_x = \tau_xw_{\tau}- w_y$, so
+\[w_t+3w_x = (\tau_t+3\tau_x)w_{\tau} = \gamma(y)\]
+
+Let $\tau = t$, then $w_{\tau} = \gamma(y) \implies w =
+\tau\gamma(y)+g(y)$
+
+Plug-in $\tau$ and $y$ and verify,
+\[w_t = \gamma(3t-x) +3t\gamma'(3t-x) +3g'(3t-x)\]
+\[w_x = -t\gamma'(3t-x) -g'(3t-x) \]
+\[\implies w_t+3w_x = \gamma(3t-x)\]
+
+So, \[w(t,x) = t\gamma(3t-x)+g(3t-x)\quad\blacklozenge\]
+\newpage
+\subsection*{5} Use Problem 4 to solve the following second order differential equations
+\paragraph{(1)} $\pdv[2]{u}{t}-\pdv[2]{u}{x} = 0$
+
+\uwave{slu.}
+
+Factor the operator $(\pdv{t}-\pdv{x})(\pdv{t}+\pdv{x})u = 0$.
+
+Let $a = (\pdv{t}+\pdv{x})u$, to reduce (1) to $\begin{cases}
+  (\pdv{t}-\pdv{x})a = 0\\ (\pdv{t}+\pdv{x})u = a\end{cases}$
+
+By 4.(1), the solution is,
+\[u(t,x) = f(t+x)+g(t-x)\quad \lozenge\]
+
+\paragraph{(2)} $\pdv[2]{v}{t} +\pdv{v}{x}{t} -2\pdv[2]{v}{x} = 0$
+
+\uwave{slu.}
+
+Factor the operator $(\pdv{t}-\pdv{x})(\pdv{t}+2\pdv{x})v =0$
+
+Let $b = (\pdv{t}-\pdv{x})v$, to reduce (1) to $\begin{cases}
+  (\pdv{t}+2\pdv{x})b = 0\\ (\pdv{t}-\pdv{x})v = b\end{cases}$
+
+By 4.(2), the solution is,
+\[u(t,x) = f(t+x)+g(2t-x)\quad \lozenge\]
+
+\paragraph{(3)} $\pdv[2]{w}{t} +6\pdv{w}{x}{t} +9\pdv[2]{w}{x} = 0$
+
+\uwave{slu.}
+
+Factor the operator
+\[(\pdv{t}+3\pdv{x})^2w =0\]
+
+Let $c = (\pdv{t}+3\pdv{x})w$, to reduce (1) to $\begin{cases}
+  (\pdv{t}+3\pdv{x})c = 0\\ (\pdv{t}-\pdv{x})w = c\end{cases}$
+
+By 4.(3), the solution is,
+\[w(t,x) = t\gamma(3t-x)+g(3t-x)\quad \lozenge\]
+
+\subsection*{6} 6. In each of the problems above, suppose that $f$ is any one of the three functions
+$u, v,$ or $w$ above. Given that
+\[f(0,x) =\phi(x)\text{ and } f_t(0,x) = \psi(x).\]
+,solve for $f$ in terms of $\phi$ and $\psi$. You may wish to study how Strauss does this in his derivation
+of the solution to the wave equation.
+
+\uwave{slu.}
+\paragraph{(1)} The equation 5.(1) is the wave equation with $c = 1$, thus
+the solution with initial conditions is, \[u(x,t) =
+  \frac{1}{2}[\phi(x+t)+\phi(x-t)] + \int_{x-t}^{x+t} \psi(s)
+  \dd{s}\]
+The solution is due to Jean-Baptiste le Rond d'Alembert in 1746.
+\newpage
+\paragraph{(2)} The equation in 5.(2) has solution
+\[u(t,x) =  f(t+x)+g(2t-x)\]
+Multiplying the argument of $g$ by $-1$ doesn't change the form of the
+solution as $g$ is arbitrary, so,
+\[u(t,x) =  f(x+t)+g(x-2t)\]
+Differentiating with respect to $t$, we get
+\[u_t(t,x) =  f'(x+t)-2g'(x-2t)\]
+Plugging in $0$, we get
+\[u(0,x) =  f(x)+g(x) = \phi(x) \text{ and } u_t(0,x) =
+  f'(x)-2g'(x) = \psi(x)\]
+Then
+\[\phi'(x) = f'(x)+g'(x) \text{ and } \psi(x) = f'(x)-2g'(x)\]
+
+Solving the system for $f'(x)$, and $g'(x)$ we get
+\[f'(x) = \frac{1}{3}(2\phi'(x) + \psi(x)) \text{ and } g'(x) = \frac{1}{3}(\phi'(x) -\psi(x))\]
+So,
+\[f(x) = \frac{1}{3}\left(  2\phi(x) -\int_0^x\psi(s) \dd{s}\right) \text{ and } g(x) =\frac{1}{3}\left(
+  \phi(x) -\int_0^x \psi(s) \dd{s}\right)\]
+Plugging $f$ and $g$ into the solution,
+\[v(t,x) = \frac{1}{3}\left(  2\phi(x+t) +\int_0^{x+t}\psi(s) \dd{s}\right) +\frac{1}{3}\left(
+    \phi(x-2t) -\int_0^{x-2t} \psi(s) \dd{s}\right)\]
+Rearranging,
+\[v(t,x) = \frac{1}{3}(2\phi(x+t) +\phi(x-2t)) +\frac{1}{3} \int_{x-2t}^{x+t}\psi(s)
+  \dd{s}\]
+\paragraph{(3)} The equation in 4.(3), has solution in the form,
+\[w(t,x) = tf(x-3t)+g(x-3t)\]
+\[w_t(t,x) = f(x-3t)-3tf'(x-3t)-3g'(x-3t)\]
+\[w(0,x) = g(x) = \phi(x) \text{ and } w_t(0,x) = f(x)-3g'(x) = \psi(x)\]
+So,
+\[\phi(x) = g(x) \text{ and } \psi(x) = f(x) -3\phi'(x)\]
+Solving for $f$, and $g$,
+\[f(x) = \psi(x) +3\phi'(x)\text{ and } g(x) = \phi(x)\]
+\[w(t,x) = t\left(\psi(x-3t) +3\phi'(x-3t)\right) + \phi(x-3t)\]
+\newpage
+Since the solution is a bit different I want to verify,
+\[w_t(t,x) = \psi(x-3t) +3\phi'(x-3t) -3t\psi'(x-3t) -9t\phi''(x-3t)  -3\phi'(x-3t)\]
+\[w_t(t,x)= \psi(x-3t) -3t\psi'(x-3t) -9t\phi''(x-3t) \implies w_t(0,x) = \psi(x) \text{ and } w(0,x) =\phi(x)\]
+\[w_{tt}(t,x) =-3\psi'(x-3t)-3\psi'(x-3t)-9\phi''(x-3t)+9t\psi''(x-3t) +27t\phi'''(x-3t)\]
+\[w_{tt}(t,x) =
+  \color{green}-6\psi'(x-3t)
+  \color{Goldenrod}-9\phi''(x-3t)
+  \color{Peach}+9t\psi''(x-3t) \color{cyan}+27t\phi'''(x-3t)\]
+\[w_{tx}(t,x) = \psi'(x-3t) -3t\psi''(x-3t) -9t\phi'''(x-3t)\]
+\[6w_{tx}(t,x) = \color{green}6\psi'(x-3t)
+  \color{Peach}-18t\psi''(x-3t) \color{cyan}-54t\phi'''(x-3t)\]
+\[w_x(t,x) = t\left(\psi'(x-3t) +3\phi''(x-3t)\right) + \phi'(x-3t)\]
+\[w_{xx}(t,x) = t\left(\psi''(x-3t) +3\phi'''(x-3t)\right) +
+  \phi''(x-3t) = t\psi''(x-3t) +3t\phi'''(x-3t) +\phi''(x-3t)\]
+\[9w_{xx}(t,x) = \color{Peach}9t\psi''(x-3t) \color{cyan}+27t\phi'''(x-3t) \color{Goldenrod}+9\phi''(x-3t)\]
+So,
+\[w_{tt} +6w_{tx}+9w_{xx} = 0\]
+So the solutions (1),(2), and (3) solve the equations in
+consideration for the corresponding initial conditions$\quad \blacklozenge$
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
